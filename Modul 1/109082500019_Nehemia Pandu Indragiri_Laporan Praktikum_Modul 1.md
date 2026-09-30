@@ -2,13 +2,12 @@
 <p align="center">Nehemia Pandu Indragiri - 109082500019</p>
 
 ## Dasar Teori
-isi dengan penjelasan dasar teori disertai referensi jurnal (gunakan kurung siku [] untuk pernyataan yang mengambil refernsi dari jurnal).
-contoh :
-Linked list atau yang disebut juga senarai berantai adalah Salah satu bentuk struktur data yang berisi kumpulan data yang tersusun secara sekuensial, saling bersambungan, dinamis, dan terbatas[1]. Linked list terdiri dari sejumlah node atau simpul yang dihubungkan secara linier dengan bantuan pointer.
+
+C++ adalah bahasa pemrograman yang diciptakan oleh Bjarne Stroustrup di AT&T Bell Laboratories pada awal tahun 1980-an sebagai pengembangan dari bahasa C dengan tambahan fasilitas kelas, dan pada praktikum ini digunakan Code::Blocks sebagai IDE yang bersifat free, open-source, dan cross-platform. Program C++ terdiri dari fungsi-fungsi dengan main() sebagai program utama, di mana setiap pernyataan diakhiri titik koma (;) dan setiap variabel harus dideklarasikan terlebih dahulu sebelum digunakan. Data disimpan dalam variabel atau konstanta dengan tipe dasar seperti char, int, long, float, dan double, sedangkan masukan dan keluaran dilakukan dengan cin >> dan cout <<. Operasi pada data dilakukan menggunakan operator aritmatika, assignment, relasional, logika, dan unary seperti increment (++) dan decrement (--). Untuk pengambilan keputusan digunakan struktur kondisional if, if-else, dan switch, sedangkan pengulangan proses dilakukan dengan for, while, dan do...while yang semuanya memerlukan kondisi berhenti. Selain itu, struct dan array dipakai untuk mengelompokkan data, dan fungsi dipakai agar program lebih terstruktur serta dapat digunakan kembali. [3]
 
 ## Unguided 
 
-### 1. (isi dengan soal unguided 1)
+### 1. Buatlah program yang menerima input-an dua buah bilangan betipe float, kemudian memberikan output-an hasil penjumlahan, pengurangan, perkalian, dan pembagian dari dua bilangan tersebut. 
 
 ```C++
 #include <iostream>
@@ -32,15 +31,15 @@ int main(){
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1]![(https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).pn](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%201/Screenshot%202026-09-30%20044609.png?raw=true)
+![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%201/Screenshot%202026-09-30%20044609.png?raw=true)
 
 
 ##### Output 2
-![Screenshot Output Unguided 1_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 1_2](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%201/Screenshot%202026-09-30%20051216.png?raw=true)
 
-Program di atas merupakan program yang saya buat untuk menghitung dan menampilkan hasil penjumlahan, pengurangan, perkalian, dan pembagian dari 2 buah bilangan a dan b.
+Program di atas merupakan program yang saya buat untuk menghitung dan menampilkan hasil penjumlahan, pengurangan, perkalian, dan pembagian dari 2 buah bilangan a dan b dengan tipe data float, lalu nilainya diinputkan oleh user menggunakan cin. Setelah itu program menghitung a + b, a - b, a * b, dan a / b, kemudian menampilkan semua hasilnya menggunakan cout.
 
-### 2. (isi dengan soal unguided 2)
+### 2. Buatlah sebuah program yang menerima masukan angka dan mengeluarkan output nilai angka tersebut dalam bentuk tulisan. Angka yang akan di- input-kan user adalah bilangan bulat positif mulai dari 0 s.d 100 contoh:   Gambar 1. 24 
 
 ```C++
 #include <iostream>
@@ -86,17 +85,15 @@ int main(){
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1]![(https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%202/Screenshot%202026-09-30%20045037.png?raw=true)
+![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%202/Screenshot%202026-09-30%20051457.png?raw=true)
 
-contoh :
-![Screenshot Output Unguided 2_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided2-1.png)
 
 ##### Output 2
-![Screenshot Output Unguided 2_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 2_2](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%202/Screenshot%202026-09-30%20051608.png?raw=true)
 
-penjelasan unguided 2
+Program di atas merupakan program yang saya buat untuk mengubah bilangan bulat 0-100 yang diinputkan user menjadi bentuk tulisan. contoh: 79 menjadi "tujuh puluh sembilan". Angka satuan 0-9 disimpan dalam sebuah array satuan, sehingga dapat dipanggil langsung berdasarkan indeksnya. Pengubahan dilakukan dengan struktur kondisional if-else yang menyesuaikan pola penulisan tiap rentang angka. Jika angka di luar 0-100, program akan menampilkan pesan peringatan.
 
-### 3. (isi dengan soal unguided 3)
+### 3. Buatlah program yang dapat memberikan input dan output sbb. Gambar 1. 25 Mirror 
 
 ```C++
 #include <iostream>
@@ -138,20 +135,17 @@ int main () {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1]![(https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%203/Screenshot%202026-09-30%20045139.png?raw=true)
-
-contoh :
-![Screenshot Output Unguided 3_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided3-1.png)
+![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%203/Screenshot%202026-09-30%20051346.png?raw=true)
 
 ##### Output 2
-![Screenshot Output Unguided 3_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 3_2](https://github.com/NehemiaPandu/Struktur-Data-Laporan-Praktikum/blob/main/Modul%201/Screenshot%20Output/Output%20Soal%203/Screenshot%202026-09-30%20051402.png?raw=true)
 
-penjelasan unguided 3
+Program di atas merupakan program yang saya buat untuk menampilkan pola mirror berdasarkan angka yang diinputkan user. Pola dibentuk dari angka menurun di sisi kiri, tanda * di tengah, dan angka menaik di sisi kanan, dengan jumlah angka yang berkurang di setiap baris. Program ini menggunakan nested loop, perulangan luar mengatur baris, dan perulangan dalam mengatur spasi serta angka di setiap baris.
 
 ## Kesimpulan
-...
+Pada praktikum modul 1 saya belajar terkait struktur dasar program C++, yaitu penggunaan #include < iostream>, fungsi main(), deklarasi variabel dengan tipe data yang sesuai, serta input dan output menggunakan cin dan cout. Saya juga belajar menggunakan operator aritmatika untuk mengolah data, struktur kondisional if-else untuk mengambil keputusan, dan perulangan for termasuk nested loop untuk membentuk pola keluaran. Semua materi tersebut saya terapkan dalam tiga latihan soal yang sudah diberikan yaitu menghitung operasi aritmatika dua bilangan, mengubah angka 0 sampai 100 menjadi tulisan, dan membuat pola mirror.
 
 ## Referensi
 [1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
 <br>[2] Indahyati, Uce., Rahmawati Yunianita. (2020). "BUKU AJAR ALGORITMA DAN PEMROGRAMAN DALAM BAHASA C++". Sidoarjo: Umsida Press. Diakses pada 10 Maret 2024 melalui https://doi.org/10.21070/2020/978-623-6833-67-4.
-<br>...
+<br>[3] Laboratorium Informatika. Modul 1: Code Blocks IDE dan Pengenalan Bahasa C++ (Bagian Pertama). Praktikum Struktur Data, Fakultas Informatika, Telkom University.

@@ -36,9 +36,4 @@ int main(){
     cout << a << " : " << hasil << endl;
     return 0;
 
-
-
-
-
-
 }
