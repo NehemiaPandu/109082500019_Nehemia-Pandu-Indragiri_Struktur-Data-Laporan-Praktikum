@@ -2,7 +2,7 @@
 <p align="center">Nehemia Pandu Indragiri - 109082500019</p>
 
 ## Dasar Teori
-Array adalah kumpulan data dengan nama yang sama dan tipe data yang sama, yang elemennya diakses melalui indeks mulai dari 0, dan dapat berbentuk satu dimensi, dua dimensi (seperti tabel), maupun berdimensi banyak. Setiap data program disimpan di memori yang memiliki alamat (address), dan alamat suatu variabel dapat diketahui dengan operator &. Pointer adalah variabel yang menyimpan alamat memori variabel lain, dideklarasikan dengan tipe *nama_variabel, dan nilai yang ditunjuknya dapat diakses dengan operator *. Pointer memiliki hubungan erat dengan array, karena pa = &a[0] membuat pa menunjuk ke elemen pertama array, sehingga *(pa + i) sama dengan a[i]. String pada C++ pada dasarnya adalah array dari karakter yang diakhiri karakter '\0', dan dapat diakses melalui indeks maupun pointer karakter. Fungsi adalah blok kode yang dirancang untuk tugas tertentu agar program lebih terstruktur dan mengurangi duplikasi kode, dengan bentuk umum tipe_keluaran nama_fungsi(daftar_parameter). Prosedur adalah fungsi bertipe void yang tidak mengembalikan nilai. Parameter formal adalah variabel pada definisi fungsi, sedangkan parameter aktual adalah nilai atau variabel yang dipakai saat fungsi dipanggil. Parameter dapat dilewatkan dengan tiga cara: call by value yang hanya menyalin nilai sehingga variabel asli tidak berubah, serta call by pointer (parameter *x, dipanggil dengan &a) dan call by reference (parameter &x) yang melewatkan alamat sehingga variabel asli dapat berubah.
+Array adalah kumpulan data dengan nama yang sama dan tipe data yang sama, yang elemennya diakses melalui indeks mulai dari 0, dan dapat berbentuk satu dimensi, dua dimensi (seperti tabel), maupun berdimensi banyak. Setiap data program disimpan di memori yang memiliki alamat (address), dan alamat suatu variabel dapat diketahui dengan operator &. Pointer adalah variabel yang menyimpan alamat memori variabel lain, dideklarasikan dengan tipe *nama_variabel, dan nilai yang ditunjuknya dapat diakses dengan operator *. Pointer memiliki hubungan erat dengan array, karena pa = &a[0] membuat pa menunjuk ke elemen pertama array, sehingga *(pa + i) sama dengan a[i]. String pada C++ pada dasarnya adalah array dari karakter yang diakhiri karakter '\0', dan dapat diakses melalui indeks maupun pointer karakter. Fungsi adalah blok kode yang dirancang untuk tugas tertentu agar program lebih terstruktur dan mengurangi duplikasi kode, dengan bentuk umum tipe_keluaran nama_fungsi(daftar_parameter). Prosedur adalah fungsi bertipe void yang tidak mengembalikan nilai. Parameter formal adalah variabel pada definisi fungsi, sedangkan parameter aktual adalah nilai atau variabel yang dipakai saat fungsi dipanggil. Parameter dapat dilewatkan dengan tiga cara: call by value yang hanya menyalin nilai sehingga variabel asli tidak berubah, serta call by pointer (parameter *x, dipanggil dengan &a) dan call by reference (parameter &x) yang melewatkan alamat sehingga variabel asli dapat berubah. [3]
 
 ## Guided 
 
@@ -416,13 +416,11 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%202/Unguided/Screenshot%20Output/Output%20Soal%201/Screenshot%202026-10-07%20162554.png?raw=true)
 
-contoh :
-![Screenshot Output Unguided 1_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided1-1.png)
 
 ##### Output 2
-![Screenshot Output Unguided 1_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 1_2](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%202/Unguided/Screenshot%20Output/Output%20Soal%201/Screenshot%202026-10-07%20162634.png?raw=true)
 
 Program di atas merupakan program yang saya buat untuk melakukan operasi penjumlahan, pengurangan, dan perkalian pada matriks berukuran 3x3 dengan tipe data int, lalu jumlah matriks (2 sampai 10) dan nilai setiap elemennya diinputkan oleh user menggunakan cin. Setelah itu program menyimpan semua matriks dalam array tiga dimensi matriks[10][3][3] dan menampilkannya menggunakan perulangan for bersarang. Penjumlahan dan pengurangan dihitung dengan cara menyalin matriks pertama ke hasilTambah dan hasilKurang, lalu menambah atau mengurangkannya dengan matriks berikutnya pada setiap elemen yang posisinya sama. Perkalian dihitung dengan cara mengalikan baris dan kolom (hasilKali[i][k] * matriks[m][k][j]) yang disimpan sementara pada tempKali, lalu dipindahkan kembali ke hasilKali. Semua hasilnya ditampilkan menggunakan fungsi cetakMatriks() dan cout.
 
@@ -497,13 +495,10 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
-
-contoh :
-![Screenshot Output Unguided 2_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided2-1.png)
+![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%202/Unguided/Screenshot%20Output/Output%20Soal%202/Screenshot%202026-10-07%20162840.png?raw=true)
 
 ##### Output 2
-![Screenshot Output Unguided 2_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 2_2](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%202/Unguided/Screenshot%20Output/Output%20Soal%202/Screenshot%202026-10-07%20162911.png?raw=true)
 
 Program di atas merupakan program yang saya buat untuk menukar nilai dari 3 buah variabel a, b, dan c dengan tipe data int menggunakan dua cara, yaitu call by pointer dan call by reference, lalu nilainya diinputkan oleh user menggunakan cin. Setelah itu program memanggil fungsi tukarPointer(&a, &b, &c) dan tukarReference(a2, b2, c2), yang di dalamnya nilai a diisi nilai b, nilai b diisi nilai c, dan nilai c diisi nilai a yang disimpan sementara pada variabel temp, kemudian menampilkan nilai sebelum dan sesudah ditukar menggunakan cout.
 
@@ -596,20 +591,18 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%202/Unguided/Screenshot%20Output/Output%20Soal%203/Screenshot%202026-10-07%20163014.png?raw=true)
 
-contoh :
-![Screenshot Output Unguided 3_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided3-1.png)
 
 ##### Output 2
-![Screenshot Output Unguided 3_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 3_2](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%202/Unguided/Screenshot%20Output/Output%20Soal%203/Screenshot%202026-10-07%20163032.png?raw=true)
 
 Program di atas merupakan program yang saya buat untuk mengolah sebuah array satu dimensi arrA yang berisi 10 bilangan dengan tipe data int, lalu menampilkan menu pilihan menggunakan switch-case yang berulang dengan do-while. Setelah user memilih menu, program menampilkan isi array menggunakan perulangan for, mencari nilai maksimum dan minimum menggunakan function cariMaksimum() dan cariMinimum() dengan cara membandingkan setiap elemen array, serta menghitung nilai rata-rata menggunakan prosedur hitungRataRata() dengan cara menjumlahkan semua elemen lalu membaginya dengan jumlah elemen, kemudian menampilkan semua hasilnya menggunakan cout.
 
 ## Kesimpulan
-...
+Pada praktikum modul 2 saya belajar terkait penggunaan array satu dimensi, dua dimensi, dan tiga dimensi untuk menyimpan sekumpulan data dengan tipe data yang sama, serta penggunaan pointer dan operator alamat (&) untuk menyimpan dan mengakses alamat memori suatu variabel. Saya juga belajar membuat function yang mengembalikan nilai dan prosedur (void) yang hanya menjalankan tugas, serta tiga cara melewatkan parameter, yaitu call by value, call by pointer, dan call by reference. Semua materi tersebut saya terapkan dalam tiga latihan soal yang sudah diberikan, yaitu menukar nilai tiga variabel menggunakan pointer dan reference, membuat menu program array untuk mencari nilai maksimum, minimum, dan rata-rata menggunakan function dan prosedur, serta melakukan operasi penjumlahan, pengurangan, dan perkalian pada matriks 3x3.
 
 ## Referensi
 [1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
 <br>[2] Indahyati, Uce., Rahmawati Yunianita. (2020). "BUKU AJAR ALGORITMA DAN PEMROGRAMAN DALAM BAHASA C++". Sidoarjo: Umsida Press. Diakses pada 10 Maret 2024 melalui https://doi.org/10.21070/2020/978-623-6833-67-4.
-<br>...
+<br>[3] Laboratorium Informatika. Modul 2: Pengenalan Bahasa C++ (Bagian Kedua). Praktikum Struktur Data, Fakultas Informatika, Telkom University.
