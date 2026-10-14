@@ -157,13 +157,10 @@ int main(){
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
-
-contoh :
-![Screenshot Output Unguided 1_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided1-1.png)
+![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%203/Unguided/Screenshot%20Output/Output%20Soal%201/Screenshot%202026-10-14%20123554.png?raw=true)
 
 ##### Output 2
-![Screenshot Output Unguided 1_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 1_2](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%203/Unguided/Screenshot%20Output/Output%20Soal%201/Screenshot%202026-10-14%20123618.png?raw=true)
 
 Program di atas merupakan program yang saya buat untuk menyimpan data mahasiswa (maksimal 10) ke dalam sebuah array bertipe struct mahasiswa, dengan field nama, nim, nilai UTS, nilai UAS, nilai tugas, dan nilai akhir. Program dibagi menjadi tiga file, yaitu mahasiswa.h untuk deklarasi struct dan fungsi, mahasiswa.cpp untuk isi fungsi, dan main.cpp sebagai program utama. Pertama, user memasukkan jumlah mahasiswa (1 sampai 10) menggunakan cin, dan jika jumlahnya di luar batas maka program menampilkan pesan kesalahan. Setelah itu program memanggil prosedur inputMhs dengan perulangan for untuk mengisi data setiap mahasiswa. Di akhir prosedur tersebut, fungsi hitungNilaiAkhir dipanggil untuk menghitung nilai akhir dengan rumus 0.3uts + 0.4uas + 0.3*tugas, lalu hasilnya disimpan ke field nilaiAkhir. Terakhir, semua data mahasiswa beserta nilai akhirnya ditampilkan menggunakan perulangan for dan cout.
 
@@ -243,13 +240,8 @@ void tampil_pelajaran(pelajaran pel){
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%203/Unguided/Screenshot%20Output/Output%20Soal%202/Screenshot%202026-10-14%20122508.png?raw=true)
 
-contoh :
-![Screenshot Output Unguided 2_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided2-1.png)
-
-##### Output 2
-![Screenshot Output Unguided 2_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
 Program di atas merupakan program yang saya buat untuk menerapkan konsep ADT pada data pelajaran, dengan struct pelajaran yang memiliki field namaMapel dan kodeMapel bertipe string. Program dibagi menjadi tiga file, yaitu pelajaran.h untuk deklarasi type dan fungsi, pelajaran.cpp untuk isi fungsi, dan main.cpp untuk mencobanya. Pada main.cpp, variabel namapel dan kodepel diisi dengan “Struktur Data” dan “STD”, lalu keduanya dikirim ke fungsi create_pelajaran. Fungsi ini membuat variabel bertipe pelajaran, mengisi kedua field-nya dengan nilai yang diterima, lalu mengembalikannya ke main. Hasilnya disimpan di variabel pel, kemudian prosedur tampil_pelajaran dipanggil untuk menampilkan nama pelajaran dan kode pelajaran menggunakan cout.
 
@@ -347,13 +339,8 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%203/Unguided/Screenshot%20Output/Output%20Soal%203/Screenshot%202026-10-14%20122346.png?raw=true)
 
-contoh :
-![Screenshot Output Unguided 3_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided3-1.png)
-
-##### Output 2
-![Screenshot Output Unguided 3_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
 Program di atas merupakan program yang saya buat untuk melakukan operasi pada array 2D dan pointer. Program menggunakan dua array integer 2D berukuran 3x3 (arrayA dan arrayB) serta dua pointer integer (p1 dan p2) yang menunjuk ke variabel var1 dan var2. Program dibagi menjadi tiga file, yaitu array.h untuk deklarasi fungsi, array.cpp untuk isi fungsi, dan main.cpp sebagai program utama. Pertama, kedua array ditampilkan menggunakan fungsi tampilArray yang memakai perulangan for bersarang. Kemudian fungsi tukarIsiArray menukar elemen arrayA dan arrayB pada posisi tertentu, yaitu baris 1 dan kolom 1, dengan bantuan variabel temp, dan jika posisinya di luar batas array maka program menampilkan pesan kesalahan. Setelah itu kedua array ditampilkan kembali untuk melihat hasil penukaran. Pada bagian pointer, fungsi tukarPointer menerima alamat dari var1 dan var2 lalu menukar isi variabel yang ditunjuk oleh kedua pointer tersebut menggunakan operator *. Hasilnya, nilai var1 dan var2 saling bertukar dan ditampilkan menggunakan cout.
 
