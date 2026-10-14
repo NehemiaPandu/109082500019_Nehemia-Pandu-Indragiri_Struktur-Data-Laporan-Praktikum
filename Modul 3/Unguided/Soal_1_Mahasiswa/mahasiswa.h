@@ -5,8 +5,9 @@ using namespace std;
 
 struct mahasiswa {
     string nama;
-    char nim[10];
+    char nim[13];
     int nilaiUTS, nilaiUAS, nilaiTugas;
+     float nilaiAkhir;
 };
 
 void inputMhs (mahasiswa &m);

@@ -26,4 +26,5 @@ void hasil(mahasiswa m) {
     cout << "Nilai UTS   :" << m.nama << endl;
     cout << "Nilai UAS   :" << m.nama << endl;
     cout << "Nilai Tugas :" << m.nama << endl;
+    m.nilaiAkhir = nilaiAkhir(m);
 }
