@@ -1,6 +1,5 @@
 #include "Singlylist.h"
 
-// ===== Dari soal 1 =====
 void createList(List &L) {
     L.First = Nil;
 }
@@ -41,7 +40,6 @@ void deleteFirst(List &L, address &P) {
     }
 }
 
-// Menghapus elemen terakhir, hasilnya disimpan di P
 void deleteLast(List &L, address &P) {
     if (L.First == Nil) {
         P = Nil;

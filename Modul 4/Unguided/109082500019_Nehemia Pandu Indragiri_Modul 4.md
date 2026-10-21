@@ -424,7 +424,6 @@ void deleteList(List &L);
 ```C++
 #include "Singlylist.h"
 
-// ===== Dari soal 1 =====
 void createList(List &L) {
     L.First = Nil;
 }
@@ -465,7 +464,6 @@ void deleteFirst(List &L, address &P) {
     }
 }
 
-// Menghapus elemen terakhir, hasilnya disimpan di P
 void deleteLast(List &L, address &P) {
     if (L.First == Nil) {
         P = Nil;
@@ -519,7 +517,6 @@ int main() {
     address P1, P2, P3, P4, P5 = Nil;
     createList(L);
 
-    // List dari soal 1: 9 12 8 0 2
     P1 = alokasi(2);
     insertFirst(L, P1);
 
@@ -535,7 +532,6 @@ int main() {
     P5 = alokasi(9);
     insertFirst(L, P5);
 
-    // Soal 2
     address P;
 
     deleteFirst(L, P);
