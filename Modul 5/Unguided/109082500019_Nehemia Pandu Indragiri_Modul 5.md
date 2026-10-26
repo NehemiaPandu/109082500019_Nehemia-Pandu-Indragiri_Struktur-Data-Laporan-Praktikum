@@ -2,9 +2,7 @@
 <p align="center">Nehemia Pandu Indragiri - 109082500019</p>
 
 ## Dasar Teori
-isi dengan penjelasan dasar teori disertai referensi jurnal (gunakan kurung siku [] untuk pernyataan yang mengambil refernsi dari jurnal).
-contoh :
-Linked list atau yang disebut juga senarai berantai adalah Salah satu bentuk struktur data yang berisi kumpulan data yang tersusun secara sekuensial, saling bersambungan, dinamis, dan terbatas[1]. Linked list terdiri dari sejumlah node atau simpul yang dihubungkan secara linier dengan bantuan pointer.
+Singly linked list merupakan struktur data dinamis yang tersusun dari serangkaian elemen (node) yang saling terhubung satu arah melalui pointer, di mana setiap node terdiri dari info yang menyimpan data dan next yang menyimpan alamat node berikutnya. Node terakhir menunjuk ke Nil dan list dinyatakan kosong apabila first bernilai Nil. Elemen yang ditunjuk oleh pointer P dapat diakses menggunakan operator panah, yaitu P->info untuk mengambil data dan P->next untuk mengambil alamat elemen selanjutnya. Seluruh operasi pada singly linked list disusun dalam bentuk ADT yang terbagi menjadi dua file, yaitu file .h yang berisi deklarasi type (infotype, address, elmlist, dan list) beserta prototype primitif, serta file .cpp yang berisi realisasi dari primitif tersebut, kemudian dipanggil melalui main.cpp. Agar file header tidak terbaca dua kali, digunakan #ifndef, #define, dan #endif. Operasi dasar pada singly linked list meliputi pembentukan list kosong (createList), pengecekan list kosong (ListEmpty), pengalokasian memori (alokasi) dan pengembalian memori ke sistem (dealokasi), penambahan elemen (insertFirst, insertAfter, dan insertLast), penghapusan elemen (delFirst, delLast, delAfter, dan delP), penampilan seluruh isi list (printInfo), penghitungan jumlah elemen (nbList), serta operasi terhadap seluruh list seperti penghapusan semua elemen (delAll), pembalikan urutan elemen (invertList), dan penyalinan list (copyList dan fCopyList). Salah satu operasi dasar yang menjadi pokok pembahasan pada modul ini adalah searching, yaitu pencarian terhadap node tertentu dengan cara mengunjungi setiap node dari elemen pertama dan berhenti setelah node yang dicari ditemukan. Fungsi findElm mengembalikan alamat elemen yang memiliki info sesuai dengan nilai yang dicari, dan mengembalikan Nil apabila tidak ditemukan, sedangkan fFindElm memeriksa apakah suatu alamat elemen terdapat di dalam list dengan nilai kembalian true atau false, dan findBefore mengembalikan alamat elemen sebelum P. Dengan adanya operasi searching, operasi lain seperti insert after, delete after, dan update menjadi lebih mudah dilakukan karena alamat elemen acuan dapat diketahui terlebih dahulu. Proses penelusuran (traversal) dari first hingga Nil dengan memanfaatkan pointer next juga digunakan untuk menampilkan isi list dan menghitung jumlah total info seluruh elemen. Pada operasi insertFirst, elemen baru selalu ditempatkan di awal list sehingga elemen yang dimasukkan paling akhir akan menjadi elemen pertama, misalnya data yang dimasukkan berurutan 2, 0, 8, 12, dan 9 akan menghasilkan list dengan urutan 9, 12, 8, 0, dan 2. [3]
 
 ## Guided 
 
@@ -111,7 +109,7 @@ void insertFirst(linkedlist &List, address nodeBaru) {
 
 void insertAfter(linkedlist &List, address nodeBaru, address Prev) {
     if (Prev != Nil) {
-        nodeBaru->next = Prev->next;
+        nodeBaru->next = Prev->next;   
         Prev->next = nodeBaru;
     } else {
         cout << "Node sebelumnya tidak valid!" << endl;
