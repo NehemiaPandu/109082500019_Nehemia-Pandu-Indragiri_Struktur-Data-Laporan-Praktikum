@@ -425,30 +425,143 @@ int main(){
     return 0;
 }
 ```
-penjelasan singkat guided 1
-
-### 2. ...
-
-```C++
-source code guided 2
-```
-penjelasan singkat guided 2
-
-### 3. ...
-
-```C++
-source code guided 3
-```
-penjelasan singkat guided 3
+Pada guided ini, saya belajar untuk membuat program singly linked list yang menerapkan konsep ADT dengan memisahkan kode menjadi tiga file, yaitu listBuah.h, listBuah.cpp, dan main.cpp. File listBuah.h berisi definisi Nil sebagai NULL, deklarasi struct buah dengan field nama, jumlah, dan harga, alias dataBuah, alias address sebagai pointer ke struct node, struct node yang berisi isidata dan next, serta struct linkedlist dengan field first sebagai penunjuk node pertama. File ini juga berisi prototipe semua fungsi dan prosedur yang dipakai, serta dilindungi include guard (#ifndef, #define, #endif) agar tidak terbaca dua kali. File listBuah.cpp berisi isi dari primitif-primitif tersebut. Fungsi isEmpty mengecek apakah first bernilai Nil, sedangkan prosedur createList mengatur first menjadi Nil untuk membentuk list kosong. Fungsi alokasi membuat node baru menggunakan new, mengisi isidata sesuai parameter nama, jumlah, dan harga, dan mengatur next menjadi Nil, sedangkan dealokasi mengembalikan memori node ke sistem menggunakan delete. Untuk penyisipan, insertFirst menempatkan node di awal list, insertAfter menyisipkan node setelah node Prev, dan insertLast menelusuri list sampai node terakhir lalu menyambungkan node baru di sana. Untuk penghapusan, delFirst, delLast, dan delAfter masing-masing menghapus node pertama, node terakhir, dan node setelah nodePrev, lalu memanggil dealokasi agar memorinya dibebaskan. Prosedur updateFirst, updateLast, dan updateAfter digunakan untuk mengubah isidata pada node pertama, node terakhir, dan node setelah nodePrev dengan data baru yang diinputkan pengguna. Untuk pencarian, FindNodeByData mencari node berdasarkan nama buah, FindNodeByAddress mencari node berdasarkan alamatnya, dan FindNodeByRange menampilkan seluruh node yang harganya berada dalam rentang tertentu, dengan masing-masing menampilkan posisi node yang ditemukan atau pesan jika tidak ditemukan. Prosedur printList menelusuri list dan menampilkan nama buah, jumlah, dan harga setiap node, fungsi nbList menghitung jumlah node dan mengembalikannya bertipe int, dan prosedur deleteList menghapus seluruh node lalu mengatur first kembali ke Nil. Semua prosedur yang mengubah susunan list menerima parameter linkedlist &List (call by reference) agar perubahan langsung tersimpan di list aslinya. Pada main.cpp, program membuat variabel List bertipe linkedlist, memanggil createList, lalu mengalokasikan lima node untuk Jeruk, Apel, Pir, Semangka, dan Durian. Kelima node disisipkan menggunakan insertFirst, insertLast, dan insertAfter sehingga urutan list menjadi Jeruk, Pir, Semangka, Apel, Durian dengan jumlah 5 node. Setelah itu updateFirst, updateLast, dan updateAfter mengubah data node pertama, node terakhir, dan node setelah Semangka (yaitu Apel), kemudian FindNodeByData, FindNodeByAddress, dan FindNodeByRange digunakan untuk mencari node berdasarkan nama, alamat nodeC, dan rentang harga 5000 sampai 10000. Berikutnya delFirst menghapus node pertama, delLast menghapus node terakhir, dan delAfter menghapus Semangka yang berada setelah Pir sehingga tersisa Pir dan Apel dengan jumlah 2 node. Terakhir, deleteList menghapus seluruh node sehingga printList menampilkan list kosong dan nbList menampilkan jumlah 0.
 
 ## Unguided 
 
-### 1. (isi dengan soal unguided 1)
+### 2.  Buatlah ADT Singly Linked list sebagai berikut di dalam file “Singlylist.h”:
+Type infotype : int
+Type address : pointer to ElmList
+Type ElmList <
+info : infotype
+next : address
+>
+Type List : < First : address >
+procedure CreateList( input/output L : List )
+function alokasi( x : infotype ) → address
+procedure dealokasi(input/output P : address )
+procedure printInfo( input L : List )
+procedure insertFirst(input/output L : List, input P :address)
+
+Kemudian buat implementasi ADT Singly Linked list pada file “Singlylist.cpp”.
+Adapun isi data
+Gambar 5-1 Ilustrasi elemen
+
+Cobalah hasil implementasi ADT pada file “main.cpp”
+
+int main()
+{
+List L;
+address P1, P2, P3, P4, P5 = Nil;
+createList(L);
+P1 = alokasi(2);
+insertFirst(L,P1);
+P2 = alokasi(0);
+insertFirst(L,P2);
+P3 = alokasi(8);
+insertFirst(L,P3);
+P4 = alokasi(12);
+insertFirst(L,P4);
+P5 = alokasi(9);
+insertFirst(L,P5);
+printInfo(L)
+return 0;
+}
 
 ```C++
-source code unguided 1
+#ifndef SINGLYLIST_H_INCLUDED
+#define SINGLYLIST_H_INCLUDED
+
+#include <iostream>
+using namespace std;
+
+#define Nil NULL
+#define info(P) (P)->info
+#define next(P) (P)->next
+#define first(L) ((L).first)
+
+typedef int infotype;
+typedef struct ElmList *address;
+
+struct ElmList {
+    infotype info;
+    address next;
+};
+
+struct List {
+    address first;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertFirst(List &L, address P);
+
+#endif
 ```
-### Output Unguided 1 :
+```C++
+#include "Singlylist.h"
+
+void createList(List &L) {
+    first(L) = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    info(P) = x;
+    next(P) = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void printInfo(List L) {
+    address P = first(L);
+    while (P != Nil) {
+        cout << info(P) << " ";
+        P = next(P);
+    }
+    cout << endl;
+}
+
+void insertFirst(List &L, address P) {
+    next(P) = first(L);
+    first(L) = P;
+}
+```
+```C++
+#include "Singlylist.h"
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5 = Nil;
+
+    createList(L);
+
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+
+    printInfo(L);
+    return 0;
+}
+```
+### Output Unguided 2 :
 
 ##### Output 1
 ![Screenshot Output Unguided 1_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
@@ -459,14 +572,127 @@ contoh :
 ##### Output 2
 ![Screenshot Output Unguided 1_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-penjelasan unguided 1 
+Program di atas merupakan program yang saya buat untuk membuat singly linked list dengan menerapkan konsep ADT yang dibagi menjadi tiga file, yaitu Singlylist.h untuk deklarasi, Singlylist.cpp untuk isi prosedur, dan main.cpp sebagai program utama. File Singlylist.h berisi definisi Nil sebagai NULL, alias infotype bertipe int, alias address sebagai pointer ke struct ElmList, struct ElmList dengan field info dan next, serta struct List dengan field first sebagai penunjuk elemen pertama. File ini juga berisi prototipe prosedur dan dilindungi include guard (#ifndef, #define, #endif). Pada Singlylist.cpp, prosedur createList menerima parameter List &L (call by reference) lalu mengatur first menjadi Nil untuk membentuk list kosong. Fungsi alokasi membuat elemen baru dengan new, mengisi info sesuai parameter x, dan mengatur next menjadi Nil, sedangkan dealokasi mengembalikan memori elemen ke sistem dengan delete. Prosedur insertFirst menyisipkan elemen di awal list dengan mengarahkan next dari P ke first, lalu menjadikan P sebagai first yang baru. Prosedur printInfo menelusuri list dari first sampai Nil sambil menampilkan info setiap elemen yang dipisahkan spasi. Pada main.cpp, program membuat variabel L bertipe List, memanggil createList, lalu mengalokasikan lima elemen bernilai 2, 0, 8, 12, dan 9 yang disisipkan satu per satu dengan insertFirst. Karena setiap elemen disisipkan di awal, urutan list menjadi 9, 12, 8, 0, 2 dan itulah yang ditampilkan oleh printInfo.
 
-### 2. (isi dengan soal unguided 2)
+### 3.  Carilah elemen dengan info 8 dengan membuat fungsi baru.
+fungsi findElm( L : List, x : infotype ) : address
 
 ```C++
-source code unguided 2
+#ifndef SINGLYLIST_H_INCLUDED
+#define SINGLYLIST_H_INCLUDED
+
+#include <iostream>
+using namespace std;
+
+#define Nil NULL
+#define info(P) (P)->info
+#define next(P) (P)->next
+#define first(L) ((L).first)
+
+typedef int infotype;
+typedef struct ElmList *address;
+
+struct ElmList {
+    infotype info;
+    address next;
+};
+
+struct List {
+    address first;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertFirst(List &L, address P);
+
+address findElm(List L, infotype x);
+
+#endif
 ```
-### Output Unguided 2 :
+```C++
+#include "Singlylist.h"
+
+void createList(List &L) {
+    first(L) = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    info(P) = x;
+    next(P) = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void printInfo(List L) {
+    address P = first(L);
+    while (P != Nil) {
+        cout << info(P) << " ";
+        P = next(P);
+    }
+    cout << endl;
+}
+
+void insertFirst(List &L, address P) {
+    next(P) = first(L);
+    first(L) = P;
+}
+
+address findElm(List L, infotype x) {
+    address P = first(L);
+    while (P != Nil) {
+        if (info(P) == x) {
+            return P;
+        }
+        P = next(P);
+    }
+    return Nil;
+}
+```
+```C++
+#include "Singlylist.h"
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5 = Nil;
+
+    createList(L);
+
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+
+    printInfo(L);
+
+    address P = findElm(L, 8);
+    if (P != Nil) {
+        cout << "8 ditemukan dalam list" << endl;
+    } else {
+        cout << "8 tidak ditemukan dalam list" << endl;
+    }
+
+    return 0;
+}
+```
+
+### Output Unguided 3 :
 
 ##### Output 1
 ![Screenshot Output Unguided 2_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
@@ -477,14 +703,141 @@ contoh :
 ##### Output 2
 ![Screenshot Output Unguided 2_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-penjelasan unguided 2
+Pada soal ini, program dikembangkan dengan menambahkan fungsi findElm untuk mencari elemen yang memiliki info bernilai 8 di dalam list. Fungsi findElm dideklarasikan pada Singlylist.h dengan parameter List L dan infotype x, serta mengembalikan address. Pada Singlylist.cpp, fungsi ini membuat pointer P yang dimulai dari first, lalu menelusuri list selama P tidak sama dengan Nil. Setiap elemen yang dikunjungi akan dibandingkan nilai info-nya dengan x, jika sama maka fungsi langsung mengembalikan alamat elemen tersebut, jika tidak maka P berpindah ke elemen berikutnya melalui next. Apabila penelusuran selesai dan tidak ada elemen yang cocok, fungsi mengembalikan Nil. Pada main.cpp, hasil pemanggilan findElm(L, 8) disimpan dalam variabel P, lalu diperiksa dengan percabangan if. Karena elemen bernilai 8 ada di dalam list, hasilnya bukan Nil sehingga program menampilkan tulisan “8 ditemukan dalam list”.
 
-### 3. (isi dengan soal unguided 3)
+### 4. Hitunglah jumlah total info seluruh elemen (9+12+8+0+2=31).
 
 ```C++
-source code unguided 3
+#ifndef SINGLYLIST_H_INCLUDED
+#define SINGLYLIST_H_INCLUDED
+
+#include <iostream>
+using namespace std;
+
+#define Nil NULL
+#define info(P) (P)->info
+#define next(P) (P)->next
+#define first(L) ((L).first)
+
+typedef int infotype;
+typedef struct ElmList *address;
+
+struct ElmList {
+    infotype info;
+    address next;
+};
+
+struct List {
+    address first;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertFirst(List &L, address P);
+
+address findElm(List L, infotype x);
+
+int totalInfo(List L);
+
+#endif
 ```
-### Output Unguided 3 :
+
+```C++
+#include "Singlylist.h"
+
+void createList(List &L) {
+    first(L) = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    info(P) = x;
+    next(P) = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void printInfo(List L) {
+    address P = first(L);
+    while (P != Nil) {
+        cout << info(P) << " ";
+        P = next(P);
+    }
+    cout << endl;
+}
+
+void insertFirst(List &L, address P) {
+    next(P) = first(L);
+    first(L) = P;
+}
+
+address findElm(List L, infotype x) {
+    address P = first(L);
+    while (P != Nil) {
+        if (info(P) == x) {
+            return P;
+        }
+        P = next(P);
+    }
+    return Nil;
+}
+
+int totalInfo(List L) {
+    int total = 0;
+    address P = first(L);
+    while (P != Nil) {
+        total += info(P);
+        P = next(P);
+    }
+    return total;
+}
+```
+
+```C++
+#include "Singlylist.h"
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5 = Nil;
+
+    createList(L);
+
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+
+    printInfo(L);
+
+    address P = findElm(L, 8);
+    if (P != Nil) {
+        cout << "8 ditemukan dalam list" << endl;
+    } else {
+        cout << "8 tidak ditemukan dalam list" << endl;
+    }
+
+    cout << "Total info dari kelima elemen adalah " << totalInfo(L) << endl;
+
+    return 0;
+}
+```
+### Output Unguided 4 :
 
 ##### Output 1
 ![Screenshot Output Unguided 3_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
@@ -495,7 +848,7 @@ contoh :
 ##### Output 2
 ![Screenshot Output Unguided 3_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-penjelasan unguided 3
+Pada soal ini, program ditambahkan fungsi totalInfo untuk menghitung jumlah info dari seluruh elemen di dalam list. Fungsi totalInfo dideklarasikan pada Singlylist.h dengan parameter List L dan mengembalikan nilai bertipe int. Pada Singlylist.cpp, fungsi ini menyiapkan variabel total yang diawali dengan nilai 0 dan pointer P yang dimulai dari first. Selama P tidak sama dengan Nil, info dari elemen yang sedang ditunjuk ditambahkan ke total, kemudian P berpindah ke elemen berikutnya melalui next. Setelah penelusuran selesai, nilai total dikembalikan sebagai hasil fungsi. Pada main.cpp, hasil pemanggilan totalInfo(L) ditampilkan bersama teks keterangan. Karena list berisi elemen 9, 12, 8, 0, dan 2, maka hasil penjumlahannya adalah 31 dan itulah yang ditampilkan oleh program.
 
 ## Kesimpulan
 ...
@@ -503,4 +856,4 @@ penjelasan unguided 3
 ## Referensi
 [1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
 <br>[2] Indahyati, Uce., Rahmawati Yunianita. (2020). "BUKU AJAR ALGORITMA DAN PEMROGRAMAN DALAM BAHASA C++". Sidoarjo: Umsida Press. Diakses pada 10 Maret 2024 melalui https://doi.org/10.21070/2020/978-623-6833-67-4.
-<br>...
+<br>[3] Laboratorium Informatika. MModul 4 - SINGLY LINKED LIST (BAGIAN KEDUA). Praktikum Struktur Data, Fakultas Informatika, Telkom University.
