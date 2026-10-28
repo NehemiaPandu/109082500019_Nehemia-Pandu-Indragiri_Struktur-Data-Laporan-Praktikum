@@ -564,13 +564,9 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-contoh :
-![Screenshot Output Unguided 1_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided1-1.png)
+![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%205/Unguided/Screenshot%20Output/Output%20Soal%202/image.png?raw=true)
 
-##### Output 2
-![Screenshot Output Unguided 1_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
 Program di atas merupakan program yang saya buat untuk membuat singly linked list dengan menerapkan konsep ADT yang dibagi menjadi tiga file, yaitu Singlylist.h untuk deklarasi, Singlylist.cpp untuk isi prosedur, dan main.cpp sebagai program utama. File Singlylist.h berisi definisi Nil sebagai NULL, alias infotype bertipe int, alias address sebagai pointer ke struct ElmList, struct ElmList dengan field info dan next, serta struct List dengan field first sebagai penunjuk elemen pertama. File ini juga berisi prototipe prosedur dan dilindungi include guard (#ifndef, #define, #endif). Pada Singlylist.cpp, prosedur createList menerima parameter List &L (call by reference) lalu mengatur first menjadi Nil untuk membentuk list kosong. Fungsi alokasi membuat elemen baru dengan new, mengisi info sesuai parameter x, dan mengatur next menjadi Nil, sedangkan dealokasi mengembalikan memori elemen ke sistem dengan delete. Prosedur insertFirst menyisipkan elemen di awal list dengan mengarahkan next dari P ke first, lalu menjadikan P sebagai first yang baru. Prosedur printInfo menelusuri list dari first sampai Nil sambil menampilkan info setiap elemen yang dipisahkan spasi. Pada main.cpp, program membuat variabel L bertipe List, memanggil createList, lalu mengalokasikan lima elemen bernilai 2, 0, 8, 12, dan 9 yang disisipkan satu per satu dengan insertFirst. Karena setiap elemen disisipkan di awal, urutan list menjadi 9, 12, 8, 0, 2 dan itulah yang ditampilkan oleh printInfo.
 
@@ -695,13 +691,9 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-contoh :
-![Screenshot Output Unguided 2_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided2-1.png)
+![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%205/Unguided/Screenshot%20Output/Output%20Soal%203/image.png?raw=true)
 
-##### Output 2
-![Screenshot Output Unguided 2_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
 Pada soal ini, program dikembangkan dengan menambahkan fungsi findElm untuk mencari elemen yang memiliki info bernilai 8 di dalam list. Fungsi findElm dideklarasikan pada Singlylist.h dengan parameter List L dan infotype x, serta mengembalikan address. Pada Singlylist.cpp, fungsi ini membuat pointer P yang dimulai dari first, lalu menelusuri list selama P tidak sama dengan Nil. Setiap elemen yang dikunjungi akan dibandingkan nilai info-nya dengan x, jika sama maka fungsi langsung mengembalikan alamat elemen tersebut, jika tidak maka P berpindah ke elemen berikutnya melalui next. Apabila penelusuran selesai dan tidak ada elemen yang cocok, fungsi mengembalikan Nil. Pada main.cpp, hasil pemanggilan findElm(L, 8) disimpan dalam variabel P, lalu diperiksa dengan percabangan if. Karena elemen bernilai 8 ada di dalam list, hasilnya bukan Nil sehingga program menampilkan tulisan “8 ditemukan dalam list”.
 
@@ -840,20 +832,15 @@ int main() {
 ### Output Unguided 4 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-contoh :
-![Screenshot Output Unguided 3_1](https://github.com/DhimazHafizh/2311102151_Muhammad-Dhimas-Hafizh-Fathurrahman/blob/main/Pertemuan1_Modul1/Output-Unguided3-1.png)
-
-##### Output 2
-![Screenshot Output Unguided 3_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
+![Screenshot Output Unguided 4_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%205/Unguided/Screenshot%20Output/Output%20Soal%204/image.png?raw=true)
 
 Pada soal ini, program ditambahkan fungsi totalInfo untuk menghitung jumlah info dari seluruh elemen di dalam list. Fungsi totalInfo dideklarasikan pada Singlylist.h dengan parameter List L dan mengembalikan nilai bertipe int. Pada Singlylist.cpp, fungsi ini menyiapkan variabel total yang diawali dengan nilai 0 dan pointer P yang dimulai dari first. Selama P tidak sama dengan Nil, info dari elemen yang sedang ditunjuk ditambahkan ke total, kemudian P berpindah ke elemen berikutnya melalui next. Setelah penelusuran selesai, nilai total dikembalikan sebagai hasil fungsi. Pada main.cpp, hasil pemanggilan totalInfo(L) ditampilkan bersama teks keterangan. Karena list berisi elemen 9, 12, 8, 0, dan 2, maka hasil penjumlahannya adalah 31 dan itulah yang ditampilkan oleh program.
 
 ## Kesimpulan
-...
+Pada praktikum modul 5 saya belajar terkait lanjutan dari konsep singly linked list, yaitu struktur data dinamis berupa serangkaian elemen yang saling berkait dan hanya memiliki satu arah pointer, dengan penekanan pada operasi update dan searching. Penerapannya tetap memisahkan program menjadi tiga bagian, yaitu file header (.h) untuk deklarasi type dan prosedur, file body (.cpp) untuk isi prosedur, dan file driver (main.cpp) sebagai program utama. Saya juga mengulang penggunaan pointer untuk membentuk list yang dinamis, di mana setiap elemen terdiri dari data dan pointer next, sedangkan first digunakan untuk menunjuk elemen pertama. Selain itu, saya mempelajari operasi update, yaitu mengubah isi data pada node tertentu dengan updateFirst, updateLast, dan updateAfter, serta operasi searching, yaitu mencari node dengan menelusuri list dari elemen pertama sampai node yang dicari ditemukan atau sampai Nil. Pada guided, searching dilakukan dengan tiga cara, yaitu FindNodeByData untuk mencari berdasarkan nama buah, FindNodeByAddress untuk mencari berdasarkan alamat node, dan FindNodeByRange untuk mencari semua node yang harganya berada dalam rentang tertentu. Pada latihan, searching diterapkan dengan fungsi findElm yang mengembalikan alamat elemen yang memiliki info sesuai nilai yang dicari dan mengembalikan Nil apabila tidak ditemukan. Saya juga belajar bahwa proses penelusuran (traversal) dari first hingga Nil dengan memanfaatkan pointer next dapat dipakai untuk menghitung total info seluruh elemen melalui fungsi totalInfo. Semua materi tersebut saya terapkan dalam guided dan latihan soal yang sudah diberikan, yaitu membuat program penyimpanan data buah (nama, jumlah, dan harga) dalam linked list lengkap dengan proses insert, update, searching, dan delete, kemudian membuat ADT singly linked list yang berisi lima elemen dengan insertFirst sehingga menghasilkan list 9, 12, 8, 0, 2, mencari elemen dengan info 8 menggunakan findElm, serta menghitung total info seluruh elemen menggunakan totalInfo sehingga menghasilkan nilai 31.
 
 ## Referensi
 [1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
 <br>[2] Indahyati, Uce., Rahmawati Yunianita. (2020). "BUKU AJAR ALGORITMA DAN PEMROGRAMAN DALAM BAHASA C++". Sidoarjo: Umsida Press. Diakses pada 10 Maret 2024 melalui https://doi.org/10.21070/2020/978-623-6833-67-4.
-<br>[3] Laboratorium Informatika. MModul 4 - SINGLY LINKED LIST (BAGIAN KEDUA). Praktikum Struktur Data, Fakultas Informatika, Telkom University.
+<br>[3] Laboratorium Informatika. Modul 5 - SINGLY LINKED LIST (BAGIAN KEDUA). Praktikum Struktur Data, Fakultas Informatika, Telkom University.
