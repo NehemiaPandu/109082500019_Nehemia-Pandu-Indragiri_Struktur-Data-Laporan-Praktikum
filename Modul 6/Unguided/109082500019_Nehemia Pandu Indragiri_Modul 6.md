@@ -275,8 +275,6 @@ int main() {
 
 Pada guided 1, saya belajar untuk membuat program doubly linked list yang menerapkan konsep ADT dengan memisahkan kode menjadi tiga file, yaitu Doublylist.h, Doublylist.cpp, dan main.cpp. File Doublylist.h berisi deklarasi struct barang dengan field kode, nama, dan tahun, alias infotype untuk struct barang, alias address sebagai pointer ke struct elmlist, struct elmlist yang berisi info, prev, dan next, serta struct list dengan field first dan last sebagai penunjuk elemen pertama dan terakhir. File ini juga berisi prototipe semua prosedur dan fungsi yang dipakai, serta dilindungi include guard (#ifndef, #define, #endif) agar tidak terbaca dua kali. File Doublylist.cpp berisi isi dari primitif-primitif tersebut. Prosedur CreateList mengatur first dan last menjadi nullptr untuk membentuk list kosong. Fungsi alokasi membuat elemen baru dengan new, mengisi info sesuai parameter, dan mengatur prev dan next menjadi nullptr, sedangkan dealokasi mengembalikan memori elemen ke sistem dengan delete. Untuk penyisipan, insertFirst menempatkan elemen di awal list dan insertLast di akhir list, dan keduanya mengecek apakah list masih kosong agar first dan last ikut diperbarui. Prosedur insertAfter menyisipkan elemen P tepat setelah R, sedangkan insertBefore menyisipkan P tepat sebelum R, dan keduanya memperbarui pointer next dan prev dari elemen di sekitarnya. Untuk penghapusan, deleteFirst dan deleteLast mengambil elemen pertama dan terakhir ke P lalu memindahkan first dan last, deleteAfter menghapus elemen tepat setelah prec, dan deleteBefore menghapus elemen tepat sebelum succ. Pada keempat prosedur tersebut, elemen yang dihapus disimpan di parameter P (call by reference) agar bisa dibebaskan memorinya dengan dealokasi. Fungsi findElm menelusuri list dari first untuk mencari elemen dengan kode tertentu dan mengembalikan alamatnya, atau nullptr jika tidak ditemukan, sedangkan prosedur printInfo menampilkan seluruh isi list dalam bentuk tabel menggunakan setw dari iomanip. Pada main.cpp, program membuat variabel list L, memanggil CreateList, lalu menyiapkan empat data barang, yaitu B001 (Laptop), B002 (Monitor), B003 (Keyboard), dan B004 (Mouse). Data tersebut disisipkan secara bertahap, yaitu B002 dengan insertFirst, B004 dengan insertLast, B003 dengan insertAfter setelah B002, dan B001 dengan insertBefore sebelum B002, sehingga urutan list menjadi B001, B002, B003, B004. Kemudian findElm dipakai untuk mencari B003 dan menampilkan datanya. Setelah itu deleteAfter menghapus B003 yang berada setelah B002, deleteBefore menghapus B002 yang berada sebelum B004, deleteFirst menghapus B001, dan deleteLast menghapus B004, dan setiap elemen yang dihapus langsung dibebaskan memorinya dengan dealokasi. Pada akhir program, first dan last bernilai nullptr sehingga list ditampilkan dalam kondisi kosong.
 
-
-
 ## Unguided 
 
 ### 1. Buatlah ADT Doubly Linked list sebagai berikut di dalam file “Doublylist.h”:
@@ -440,9 +438,10 @@ contoh :
 ##### Output 2
 ![Screenshot Output Unguided 1_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-penjelasan unguided 1 
+Program di atas merupakan program yang saya buat untuk membuat doubly linked list yang menyimpan data kendaraan dengan menerapkan konsep ADT yang dibagi menjadi tiga file, yaitu Doublylist.h untuk deklarasi, Doublylist.cpp untuk isi prosedur, dan main.cpp sebagai program utama. File Doublylist.h berisi struct kendaraan dengan field nopol, warna, dan thnBuat, alias infotype untuk struct kendaraan, alias address sebagai pointer ke struct ElmList, struct ElmList yang berisi info, next, dan prev, serta struct List dengan field First dan Last sebagai penunjuk elemen pertama dan terakhir. File ini juga berisi prototipe prosedur dan dilindungi include guard (#ifndef, #define, #endif). Pada Doublylist.cpp, prosedur CreateList mengatur First dan Last menjadi Nil untuk membentuk list kosong. Fungsi alokasi membuat elemen baru dengan new, mengisi info sesuai parameter x, dan mengatur next dan prev menjadi Nil, sedangkan dealokasi mengembalikan memori elemen ke sistem dengan delete. Prosedur insertLast menyisipkan elemen di akhir list, dan jika list masih kosong maka First dan Last sama-sama menunjuk ke P, sedangkan jika tidak kosong maka prev dari P diarahkan ke Last, next dari Last lama diarahkan ke P, lalu P menjadi Last yang baru. Prosedur printInfo menelusuri list dari Last mundur menggunakan prev sampai Nil sambil menampilkan nomor polisi, warna, dan tahun setiap elemen. Pada main.cpp, program membuat variabel L bertipe List dan memanggil CreateList, lalu meminta input nomor polisi, warna, dan tahun kendaraan sebanyak empat kali. Setiap nomor polisi dicek terlebih dahulu dengan fungsi sudahTerdaftar, dan jika sudah ada di list maka ditampilkan pesan nomor polisi sudah terdaftar dan data tidak dimasukkan, sedangkan jika belum ada maka data dialokasikan dan disisipkan dengan insertLast. Pada contoh input, nomor polisi D001 yang kedua ditolak sehingga list hanya berisi D001, D003, dan D004, dan karena printInfo menelusuri dari belakang maka data ditampilkan dengan urutan D004, D003, D001.
 
-### 2. (isi dengan soal unguided 2)
+### 2. Carilah elemen dengan nomor polisi D001 dengan membuat fungsi baru.
+fungsi findElm( L : List, x : infotype ) : address
 
 ```C++
 #ifndef DOUBLYLIST_H_INCLUDED
@@ -591,9 +590,15 @@ contoh :
 ##### Output 2
 ![Screenshot Output Unguided 2_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-penjelasan unguided 2
+Program di atas merupakan lanjutan dari soal 1 yang saya buat untuk mencari elemen pada doubly linked list berdasarkan nomor polisi. Pada Doublylist.h dan Doublylist.cpp ditambahkan satu fungsi baru, yaitu findElm yang menerima parameter List L dan infotype x. Fungsi findElm menelusuri list dari First menggunakan next sambil membandingkan nopol setiap elemen dengan nopol dari x, lalu mengembalikan alamat elemen yang cocok, atau Nil jika tidak ditemukan. Pada main.cpp, bagian input data kendaraan sama seperti soal 1, hanya saja pengecekan nomor polisi yang sudah terdaftar sekarang menggunakan findElm. Setelah list terisi, program meminta input nomor polisi yang dicari, lalu memanggil findElm dan menyimpan hasilnya di variabel hasil. Jika hasil tidak bernilai Nil, program menampilkan nomor polisi, warna, dan tahun dari elemen tersebut, yaitu D001 dengan warna hitam dan tahun 90, sedangkan jika bernilai Nil ditampilkan pesan bahwa data tidak ditemukan.
 
-### 3. (isi dengan soal unguided 3)
+### 3. Hapus elemen dengan nomor polisi D003 dengan procedure delete.
+- procedure deleteFirst( input/output L : List,
+ P : address )
+- procedure deleteLast( input/output L : List,
+ P : address )
+- procedure deleteAfter( input Prec : address,
+ input/output P : addres )
 
 ```C++
 #ifndef DOUBLYLIST_H_INCLUDED
@@ -800,7 +805,7 @@ contoh :
 ##### Output 2
 ![Screenshot Output Unguided 3_2](https://github.com/(username github kalian)/(nama repository github kalian)/blob/main/(path folder menyimpan screenshot output)/(nama file screenshot output).png)
 
-penjelasan unguided 3
+Program di atas merupakan lanjutan dari soal 2 yang saya buat untuk menghapus elemen pada doubly linked list berdasarkan nomor polisi. Pada Doublylist.h dan Doublylist.cpp ditambahkan tiga prosedur baru, yaitu deleteFirst, deleteLast, dan deleteAfter. Prosedur deleteFirst mengambil elemen pertama ke variabel P lalu memindahkan First ke elemen berikutnya dan mengatur prev-nya menjadi Nil, sedangkan deleteLast mengambil elemen terakhir ke P lalu memindahkan Last ke elemen sebelumnya dan mengatur next-nya menjadi Nil. Pada kedua prosedur tersebut, jika list hanya berisi satu elemen maka First dan Last diatur menjadi Nil. Prosedur deleteAfter menghapus elemen yang berada tepat setelah Prec dengan menghubungkan next dari Prec ke elemen sesudah P, dan prev dari elemen tersebut ke Prec. Sesuai spesifikasi soal, deleteAfter tidak memiliki parameter List, sehingga prosedur ini hanya dipakai untuk elemen yang berada di tengah list. Pada ketiga prosedur tersebut, elemen yang dihapus disimpan di parameter P (call by reference) agar bisa dibebaskan memorinya dengan dealokasi. Pada main.cpp, bagian input data kendaraan sama seperti soal 2, kemudian program meminta input nomor polisi yang akan dihapus dan mencari elemennya dengan findElm. Jika elemen berada di First maka dihapus dengan deleteFirst, jika berada di Last maka dihapus dengan deleteLast, dan jika berada di tengah maka dihapus dengan deleteAfter dengan Prec berupa prev dari elemen tersebut. Setelah itu elemen yang dihapus dibebaskan memorinya dengan dealokasi dan ditampilkan pesan bahwa data berhasil dihapus. Pada contoh input, nomor polisi D003 berada di tengah list sehingga dihapus dengan deleteAfter, dan printInfo menampilkan sisa list, yaitu D004 lalu D001.
 
 ## Kesimpulan
 ...
