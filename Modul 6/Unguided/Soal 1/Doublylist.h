@@ -33,4 +33,4 @@ void dealokasi(address &P);
 void printInfo(List L);
 void insertLast(List &L, address P);
 
-#endif // SOAL1_DOUBLYLIST_H_INCLUDED
+#endif 

@@ -279,10 +279,155 @@ Pada guided 1, saya belajar untuk membuat program doubly linked list yang menera
 
 ## Unguided 
 
-### 1. (isi dengan soal unguided 1)
+### 1. Buatlah ADT Doubly Linked list sebagai berikut di dalam file “Doublylist.h”:
+Type infotype : kendaraan <
+ nopol : string
+ warna : string
+ thnBuat : integer
+>
+Type address : pointer to ElmList
+Type ElmList <
+ info : infotype
+ next :address
+ prev : address
+>
+Type List <
+ First : address
+ Last : address
+>
+procedure CreateList( input/output L : List )
+function alokasi( x : infotype ) → address
+procedure dealokasi(input/output P : address )
+procedure printInfo( input L : List )
+procedure insertLast(input/output L : List,
+ input P : address )
+
+Buatlah implementasi ADT Doubly Linked list pada file “Doublylist.cpp” dan coba hasil implementasi ADT pada file “main.cpp”.
 
 ```C++
-source code unguided 1
+#ifndef DOUBLYLIST_H_INCLUDED
+#define DOUBLYLIST_H_INCLUDED
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define Nil NULL
+
+struct kendaraan {
+    string nopol;
+    string warna;
+    int thnBuat;
+};
+
+typedef kendaraan infotype;
+typedef struct ElmList *address;
+
+struct ElmList {
+    infotype info;
+    address next;
+    address prev;
+};
+
+struct List {
+    address First;
+    address Last;
+};
+
+void CreateList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertLast(List &L, address P);
+
+#endif
+```
+
+```C++
+#include "Doublylist.h"
+
+void CreateList(List &L) {
+    L.First = Nil;
+    L.Last = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    P->info = x;
+    P->next = Nil;
+    P->prev = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void insertLast(List &L, address P) {
+    if (L.First == Nil) {
+        L.First = P;
+        L.Last = P;
+    } else {
+        P->prev = L.Last;
+        L.Last->next = P;
+        L.Last = P;
+    }
+}
+
+void printInfo(List L) {
+    address P = L.Last;
+    while (P != Nil) {
+        cout << "no polisi : " << P->info.nopol << endl;
+        cout << "warna     : " << P->info.warna << endl;
+        cout << "tahun     : " << P->info.thnBuat << endl;
+        P = P->prev;
+    }
+}
+```
+
+```C++
+#include "Doublylist.h"
+
+bool sudahTerdaftar(List L, string nopol) {
+    address P = L.First;
+    while (P != Nil) {
+        if (P->info.nopol == nopol) {
+            return true;
+        }
+        P = P->next;
+    }
+    return false;
+}
+
+int main() {
+    List L;
+    infotype x;
+    address P;
+    CreateList(L);
+
+    for (int i = 0; i < 4; i++) {
+        cout << "masukkan nomor polisi: ";
+        cin >> x.nopol;
+        cout << "masukkan warna kendaraan: ";
+        cin >> x.warna;
+        cout << "masukkan tahun kendaraan: ";
+        cin >> x.thnBuat;
+
+        if (sudahTerdaftar(L, x.nopol)) {
+            cout << "nomor polisi sudah terdaftar" << endl;
+        } else {
+            P = alokasi(x);
+            insertLast(L, P);
+        }
+        cout << endl;
+    }
+
+    cout << "DATA LIST 1" << endl << endl;
+    printInfo(L);
+
+    return 0;
+}
 ```
 ### Output Unguided 1 :
 
@@ -300,7 +445,140 @@ penjelasan unguided 1
 ### 2. (isi dengan soal unguided 2)
 
 ```C++
-source code unguided 2
+#ifndef DOUBLYLIST_H_INCLUDED
+#define DOUBLYLIST_H_INCLUDED
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define Nil NULL
+
+struct kendaraan {
+    string nopol;
+    string warna;
+    int thnBuat;
+};
+
+typedef kendaraan infotype;
+typedef struct ElmList *address;
+
+struct ElmList {
+    infotype info;
+    address next;
+    address prev;
+};
+
+struct List {
+    address First;
+    address Last;
+};
+
+void CreateList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertLast(List &L, address P);
+
+address findElm(List L, infotype x);
+
+#endif 
+```
+```C++
+#include "Doublylist.h"
+
+void CreateList(List &L) {
+    L.First = Nil;
+    L.Last = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    P->info = x;
+    P->next = Nil;
+    P->prev = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void insertLast(List &L, address P) {
+    if (L.First == Nil) {
+        L.First = P;
+        L.Last = P;
+    } else {
+        P->prev = L.Last;
+        L.Last->next = P;
+        L.Last = P;
+    }
+}
+
+void printInfo(List L) {
+    address P = L.Last;
+    while (P != Nil) {
+        cout << "no polisi : " << P->info.nopol << endl;
+        cout << "warna     : " << P->info.warna << endl;
+        cout << "tahun     : " << P->info.thnBuat << endl;
+        P = P->prev;
+    }
+}
+
+address findElm(List L, infotype x) {
+    address P = L.First;
+    while (P != Nil) {
+        if (P->info.nopol == x.nopol) {
+            return P;
+        }
+        P = P->next;
+    }
+    return Nil;
+}
+```
+```C++
+#include "Doublylist.h"
+
+int main() {
+    List L;
+    infotype x;
+    address P;
+    CreateList(L);
+
+    for (int i = 0; i < 4; i++) {
+        cout << "masukkan nomor polisi: ";
+        cin >> x.nopol;
+        cout << "masukkan warna kendaraan: ";
+        cin >> x.warna;
+        cout << "masukkan tahun kendaraan: ";
+        cin >> x.thnBuat;
+
+        if (findElm(L, x) != Nil) {
+            cout << "nomor polisi sudah terdaftar" << endl;
+        } else {
+            P = alokasi(x);
+            insertLast(L, P);
+        }
+        cout << endl;
+    }
+
+    infotype cari;
+    cout << "Masukkan Nomor Polisi yang dicari : ";
+    cin >> cari.nopol;
+    cout << endl;
+
+    address hasil = findElm(L, cari);
+    if (hasil != Nil) {
+        cout << "Nomor Polisi : " << hasil->info.nopol << endl;
+        cout << "Warna        : " << hasil->info.warna << endl;
+        cout << "Tahun        : " << hasil->info.thnBuat << endl;
+    } else {
+        cout << "Data dengan nomor polisi " << cari.nopol << " tidak ditemukan." << endl;
+    }
+
+    return 0;
+}
 ```
 ### Output Unguided 2 :
 
@@ -318,7 +596,198 @@ penjelasan unguided 2
 ### 3. (isi dengan soal unguided 3)
 
 ```C++
-source code unguided 3
+#ifndef DOUBLYLIST_H_INCLUDED
+#define DOUBLYLIST_H_INCLUDED
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define Nil NULL
+
+struct kendaraan {
+    string nopol;
+    string warna;
+    int thnBuat;
+};
+
+typedef kendaraan infotype;
+typedef struct ElmList *address;
+
+struct ElmList {
+    infotype info;
+    address next;
+    address prev;
+};
+
+struct List {
+    address First;
+    address Last;
+};
+
+void CreateList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertLast(List &L, address P);
+
+address findElm(List L, infotype x);
+
+void deleteFirst(List &L, address &P);
+void deleteLast(List &L, address &P);
+void deleteAfter(address Prec, address &P);
+
+#endif
+```
+
+```C++
+#include "Doublylist.h"
+
+void CreateList(List &L) {
+    L.First = Nil;
+    L.Last = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    P->info = x;
+    P->next = Nil;
+    P->prev = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void insertLast(List &L, address P) {
+    if (L.First == Nil) {
+        L.First = P;
+        L.Last = P;
+    } else {
+        P->prev = L.Last;
+        L.Last->next = P;
+        L.Last = P;
+    }
+}
+
+void printInfo(List L) {
+    address P = L.Last;
+    while (P != Nil) {
+        cout << "Nomor Polisi : " << P->info.nopol << endl;
+        cout << "Warna        : " << P->info.warna << endl;
+        cout << "Tahun        : " << P->info.thnBuat << endl;
+        P = P->prev;
+    }
+}
+
+address findElm(List L, infotype x) {
+    address P = L.First;
+    while (P != Nil) {
+        if (P->info.nopol == x.nopol) {
+            return P;
+        }
+        P = P->next;
+    }
+    return Nil;
+}
+
+void deleteFirst(List &L, address &P) {
+    if (L.First == Nil) {
+        P = Nil;
+    } else if (L.First == L.Last) {
+        P = L.First;
+        L.First = Nil;
+        L.Last = Nil;
+    } else {
+        P = L.First;
+        L.First = P->next;
+        L.First->prev = Nil;
+        P->next = Nil;
+    }
+}
+
+void deleteLast(List &L, address &P) {
+    if (L.Last == Nil) {
+        P = Nil;
+    } else if (L.First == L.Last) {
+        P = L.Last;
+        L.First = Nil;
+        L.Last = Nil;
+    } else {
+        P = L.Last;
+        L.Last = P->prev;
+        L.Last->next = Nil;
+        P->prev = Nil;
+    }
+}
+
+void deleteAfter(address Prec, address &P) {
+    if (Prec == Nil || Prec->next == Nil) {
+        P = Nil;
+    } else {
+        P = Prec->next;
+        Prec->next = P->next;
+        if (P->next != Nil) {
+            P->next->prev = Prec;
+        }
+        P->next = Nil;
+        P->prev = Nil;
+    }
+}
+```
+
+```C++
+#include "Doublylist.h"
+
+int main() {
+    List L;
+    infotype x;
+    address P;
+    CreateList(L);
+
+    for (int i = 0; i < 4; i++) {
+        cout << "masukkan nomor polisi: ";
+        cin >> x.nopol;
+        cout << "masukkan warna kendaraan: ";
+        cin >> x.warna;
+        cout << "masukkan tahun kendaraan: ";
+        cin >> x.thnBuat;
+
+        if (findElm(L, x) != Nil) {
+            cout << "nomor polisi sudah terdaftar" << endl;
+        } else {
+            P = alokasi(x);
+            insertLast(L, P);
+        }
+        cout << endl;
+    }
+
+    infotype hapus;
+    cout << "Masukkan Nomor Polisi yang akan dihapus : ";
+    cin >> hapus.nopol;
+
+    address target = findElm(L, hapus);
+    if (target == Nil) {
+        cout << "Data dengan nomor polisi " << hapus.nopol << " tidak ditemukan." << endl;
+    } else {
+        if (target == L.First) {
+            deleteFirst(L, P);
+        } else if (target == L.Last) {
+            deleteLast(L, P);
+        } else {
+            deleteAfter(target->prev, P);
+        }
+        dealokasi(P);
+        cout << "Data dengan nomor polisi " << hapus.nopol << " berhasil dihapus." << endl;
+    }
+
+    cout << endl << "DATA LIST 1" << endl << endl;
+    printInfo(L);
+
+    return 0;
+}
 ```
 ### Output Unguided 3 :
 

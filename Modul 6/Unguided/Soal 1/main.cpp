@@ -1,6 +1,5 @@
 #include "Doublylist.h"
 
-// Pengecekan nomor polisi yang sudah ada di dalam list
 bool sudahTerdaftar(List L, string nopol) {
     address P = L.First;
     while (P != Nil) {
