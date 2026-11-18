@@ -247,7 +247,7 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%206/Unguided/Screenshot%20Output/Soal%201/image.png?raw=true)
+![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%201/image.png?raw=true)
 
 
 Program di atas merupakan program yang saya buat untuk membuat stack menggunakan array dengan menerapkan konsep ADT yang dibagi menjadi tiga file, yaitu stack.h untuk deklarasi, stack.cpp untuk isi prosedur, dan main.cpp sebagai program utama. File stack.h berisi alias infotype bertipe int serta struct Stack dengan field info berupa array berukuran 20 dan field top sebagai penunjuk jumlah elemen yang ada di dalam stack. File ini juga berisi prototipe prosedur dan dilindungi include guard (#ifndef, #define, #endif). Pada stack.cpp, prosedur createStack menerima parameter Stack &S (call by reference) lalu mengatur top menjadi 0 untuk membentuk stack kosong. Prosedur push menyimpan elemen baru pada indeks top lalu menambah nilai top, dengan pengecekan agar tidak melebihi kapasitas 20 elemen. Fungsi pop mengurangi nilai top lalu mengembalikan info pada indeks tersebut sebagai elemen yang diambil, dengan pengecekan agar tidak dijalankan saat stack kosong. Prosedur printInfo menelusuri stack dari elemen paling atas sampai elemen terbawah sambil menampilkan info setiap elemen. Prosedur balikStack membalik urutan elemen dengan menukar elemen paling bawah dan paling atas secara bergantian sampai bertemu di tengah. Pada main.cpp, program membuat variabel S bertipe Stack, memanggil createStack, lalu melakukan push 3, 4, dan 8, pop satu kali, push 2 dan 3, pop satu kali, dan push 9 sehingga isi stack dari bawah ke atas menjadi 3, 4, 2, 9. Karena printInfo menampilkan dari Top, hasilnya adalah 9, 2, 4, 3, kemudian setelah balikStack urutannya menjadi 3, 4, 2, 9.
@@ -368,7 +368,7 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%206/Unguided/Screenshot%20Output/Soal%202/image.png?raw=true)
+![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%202/image.png?raw=true)
 
 Pada soal ini, program dikembangkan dengan menambahkan prosedur pushAscending untuk menyisipkan elemen ke dalam stack dengan tetap menjaga urutan elemen. Prosedur pushAscending dideklarasikan pada stack.h dengan parameter Stack &S dan infotype x. Pada stack.cpp, prosedur ini pertama-tama mengecek apakah stack sudah penuh, lalu mencari posisi sisip yang tepat, yaitu tepat setelah semua elemen yang nilainya lebih kecil atau sama dengan x. Setelah posisi ditemukan, elemen-elemen dari posisi tersebut sampai Top digeser satu langkah ke atas agar tersedia ruang kosong, kemudian x disimpan pada posisi itu dan nilai top ditambah satu. Dengan cara ini isi stack dari bawah ke atas selalu terurut naik sehingga elemen terbesar berada di Top. Pada main.cpp, pushAscending dipanggil dengan nilai 3, 4, 8, 2, 3, dan 9, sehingga isi stack menjadi 2, 3, 3, 4, 8, 9 dari bawah ke atas. Karena printInfo menampilkan dari Top, hasilnya adalah 9, 8, 4, 3, 3, 2, kemudian setelah balikStack urutannya menjadi 2, 3, 3, 4, 8, 9.
 
@@ -476,7 +476,7 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%206/Unguided/Screenshot%20Output/Soal%203/image.png?raw=true)
+![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%203/image.png?raw=true)
 
 Pada soal ini, program ditambahkan prosedur getInputStream untuk membaca input dari pengguna dan memasukkannya ke dalam stack. Prosedur getInputStream dideklarasikan pada stack.h dengan parameter Stack &S. Pada stack.cpp, prosedur ini membaca satu karakter pada satu waktu menggunakan cin.get() dan terus mengulang selama karakter yang terbaca bukan enter (‘\n’). Setiap karakter yang berupa angka diubah menjadi nilai integer dengan mengurangkan karakter ‘0’, kemudian dimasukkan ke dalam stack menggunakan push. Pada main.cpp, getInputStream dipanggil setelah createStack, lalu isi stack ditampilkan dengan printInfo. Jika pengguna mengetik 4729601, maka angka terakhir yang dimasukkan, yaitu 1, menjadi Top sehingga printInfo menampilkan 1, 0, 6, 9, 2, 7, 4. Setelah balikStack dipanggil, urutannya kembali seperti yang diketik, yaitu 4, 7, 2, 9, 6, 0, 1.
 
@@ -486,4 +486,4 @@ Pada praktikum modul 7 saya belajar terkait konsep stack, yaitu salah satu bentu
 ## Referensi
 [1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
 <br>[2] Indahyati, Uce., Rahmawati Yunianita. (2020). "BUKU AJAR ALGORITMA DAN PEMROGRAMAN DALAM BAHASA C++". Sidoarjo: Umsida Press. Diakses pada 10 Maret 2024 melalui https://doi.org/10.21070/2020/978-623-6833-67-4.
-<br>[3] Laboratorium Informatika. Modul 6 - Stack. Praktikum Struktur Data, Fakultas Informatika, Telkom University.
+<br>[3] Laboratorium Informatika. Modul 7 - Stack. Praktikum Struktur Data, Fakultas Informatika, Telkom University.
