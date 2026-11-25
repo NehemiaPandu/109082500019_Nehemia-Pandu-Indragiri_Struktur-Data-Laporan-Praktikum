@@ -2,136 +2,364 @@
 <p align="center">Nehemia Pandu Indragiri - 109082500019</p>
 
 ## Dasar Teori
-Stack merupakan struktur data yang prinsip operasinya seperti tumpukan, di mana elemen yang diambil terlebih dahulu adalah elemen paling atas, yaitu elemen yang terakhir kali dimasukkan. Prinsip ini disebut LIFO (Last In First Out). Akses pada stack hanya dapat dilakukan pada elemen paling atas yang disebut Top. Seluruh operasi pada stack disusun dalam bentuk ADT yang terbagi menjadi file .h untuk deklarasi type dan prototype primitif, file .cpp untuk realisasi primitif, serta main.cpp sebagai program utama. Agar file header tidak terbaca dua kali, digunakan #ifndef, #define, dan #endif.
+Queue merupakan struktur data yang diumpamakan seperti antrean, di mana elemen yang pertama masuk akan diakses terlebih dahulu. Prinsip ini disebut FIFO (First In First Out). Penyisipan (enqueue) selalu dilakukan pada bagian belakang yang disebut tail, sedangkan penghapusan (dequeue) selalu dilakukan pada bagian depan yang disebut head. Seluruh operasi pada queue disusun dalam bentuk ADT yang terbagi menjadi file .h untuk deklarasi type dan prototype primitif, file .cpp untuk realisasi primitif, serta main.cpp sebagai program utama. Agar file header tidak terbaca dua kali, digunakan #ifndef, #define, dan #endif.
 
-Stack dapat direpresentasikan dengan pointer atau tabel. Pada representasi pointer, setiap elemen terdiri dari info dan next, stack dinyatakan kosong apabila Top bernilai Nil, dan diperlukan manajemen memori berupa alokasi (new) dan dealokasi (delete). Pada representasi tabel, stack dibentuk menggunakan array berindeks dengan jumlah elemen terbatas, Top berupa bilangan bulat penunjuk indeks elemen teratas, dan tidak diperlukan manajemen memori.
+Queue dapat direpresentasikan dengan pointer atau tabel. Pada representasi pointer, setiap elemen terdiri dari info dan next, jumlah elemen tidak terbatas, queue dinyatakan kosong apabila head bernilai Nil, dan diperlukan manajemen memori berupa alokasi (new) dan dealokasi (delete). Pada representasi tabel, queue dibentuk menggunakan array berindeks dengan jumlah elemen terbatas dan tidak memerlukan manajemen memori.
 
-Dua operasi utama dalam stack adalah push dan pop. Push adalah operasi menyisipkan elemen ke dalam stack. Pada representasi pointer, push sama dengan insert first, sedangkan pada representasi tabel dilakukan dengan Top = Top + 1 lalu menyimpan data pada indeks Top. Pop adalah operasi mengambil elemen paling atas. Pada representasi pointer, pop mirip dengan delete first, sedangkan pada representasi tabel dilakukan dengan menyimpan info pada indeks Top lalu Top = Top - 1.
+Representasi tabel memiliki tiga alternatif mekanisme. Pada Alternatif 1, head selalu diam di indeks pertama dan hanya tail yang bergerak, sehingga penghapusan elemen mengharuskan pergeseran semua elemen ke depan. Cara ini sederhana tetapi tidak efisien. Pada Alternatif 2, head dan tail sama-sama bergerak maju sehingga penghapusan cukup dengan memajukan head, tetapi dapat terjadi keadaan penuh semu, yaitu tail sudah mencapai indeks maksimum padahal masih ada ruang kosong di depan head, sehingga elemen perlu digeser. Pada Alternatif 3, head dan tail berputar mengelilingi indeks tabel sehingga setelah indeks maksimum kembali ke indeks awal. Strategi ini disebut circular buffer dan efisien karena tidak memerlukan pergeseran elemen.
 
-Primitif dalam stack meliputi createStack untuk membentuk stack kosong, isEmpty untuk mengecek stack kosong, serta printInfo untuk menampilkan isi stack dari Top. Selain itu terdapat balikStack untuk membalik urutan elemen, pushAscending untuk menyisipkan elemen dengan tetap menjaga urutan sehingga elemen terbesar berada di Top, dan getInputStream untuk membaca input pengguna menggunakan cin.get() dan memasukkannya ke dalam stack hingga pengguna menekan enter. [3]
+Primitif dalam queue meliputi createQueue untuk membentuk queue kosong, isEmptyQueue dan isFullQueue untuk mengecek queue kosong atau penuh, enqueue untuk menyisipkan elemen di tail, dequeue untuk mengambil elemen di head, serta printInfo untuk menampilkan isi queue dari head sampai tail.[3]
 
 ## Guided
 
-### 1. Barang
+### 1. Guided 1
 
 ```C++
-#ifndef STACK_H_INCLUDED
-#define STACK_H_INCLUDED
+#ifndef QUEUE_H_INCLUDE
+#define QUEUE_H_INCLUDE
 
 #include <iostream>
 using namespace std;
 
-struct infotype {
-    char nim[20];
-    char nama[20];
+#define Nil NULL
+
+typedef bool boolean;
+typedef int infotype;
+typedef struct elmQ *address;
+
+struct elmQ{
+   infotype info;
+   address next;
 };
 
-struct Stack {
-    infotype info[10];
-    int Top;
+struct queue {
+   address head, tail;
 };
 
-int isEmpty(Stack S);
-
-void createStack(Stack &S);
-
-void push(Stack &S, infotype X);
-
-void pop(Stack &S, infotype &X);
-
-void viewStack(Stack S);
+boolean isEmpty(queue Q);
+void CreateQueue(queue &Q);
+address alokasi(infotype X);
+void dealokasi(address P);
+address findElm(queue Q, infotype X);
+boolean fFindElm(queue Q, address P);
+void insert(queue &Q, address P);
+void deleteQueue(queue &Q, address &P);
+void printInfo(queue Q);
+int nbList(queue Q);
+void delAll(queue &Q);
 
 #endif
 ```
 
 ```C++
-#include "stack.h"
+#include "queue.h"
 
-int isEmpty(Stack S) {
-    if (S.Top == 0) {
-        return 0;
-    }else {
-        return 1;
+boolean isEmpty(queue Q) {
+    return (Q.head == Nil);
+}
+
+void CreateQueue(queue &Q) {
+    Q.head = Nil;
+    Q.tail = Nil;
+}
+
+address alokasi(infotype X) {
+    address P = new (nothrow) elmQ;
+    if (P != Nil) {
+        P->info = X;
+        P->next = Nil;
     }
+    return P;
 }
 
-void createStack(Stack &S) {
-    S.Top = 0;
+void dealokasi(address P) {
+    delete P;
 }
 
-void push(Stack &S, infotype X) {
-    if (S.Top < 10) {
-        S.Top = S.Top + 1;
-        S.info[S.Top - 1] = X;
-    } else {
-        cout << "Stack prnuh, data tidak bisa ditambahkan" << endl;    
-    }
-}
-
-void pop(Stack &S, infotype &X) {
-    if (isEmpty(S) != 0) {
-        X = S.info[S.Top - 1];
-        S.Top = S.Top - 1;
-    } else {
-        cout << "Stack kosong, tidak ada data yang bisa diambil" << endl;
-    }
-}
-
-void viewStack(Stack S) {
-    if (isEmpty(S) == 0) {
-        cout << "Stack kosong" << endl;
-    } else {
-        cout << "Isi stack (dari TOP):" << endl;
-        for (int i = S.Top; i >= 1; i--) {
-            cout << i << ". " << S.info[i - 1].nim << " - " << S.info[i - 1].nama << endl;
+address findElm(queue Q, infotype X) {
+    address P = Q.head;
+    while (P != Nil) {
+        if (P->info == X) {
+            return P;
         }
+        P = P->next;
+    }
+    return Nil;
+}
+
+boolean fFindElm(queue Q, address P) {
+    address R = Q.head;
+    while (R != Nil) {
+        if (R == P) {
+            return true;
+        }
+        R = R->next;
+    }
+    return false;
+}
+
+void insert(queue &Q, address P) { //enqueue
+    if (isEmpty(Q)) {
+        Q.head = P;
+        Q.tail = P;
+    } else {
+        (Q.tail)->next = P;
+        Q.tail = P;
+    }
+}
+
+void deleteQueue(queue &Q, address &P) { //dequeue
+    P = Q.head;
+    if (Q.head == Q.tail) {
+        Q.head = Nil;
+        Q.tail = Nil;
+    } else {
+        Q.head = P->next;
+    }
+    P->next = Nil;
+}
+
+void printInfo(queue Q) {
+    if (isEmpty(Q)) {
+        cout << "Queue kosong" << endl;
+    } else {
+        address P = Q.head;
+        while (P != Nil) {
+            cout << P->info << " ";
+            P = P->next;
+        }
+        cout << endl;
+    }
+}
+
+int nbList(queue Q) {
+    int jumlah = 0;
+    address P = Q.head;
+    while (P != Nil) {
+        jumlah++;
+        P = P->next;
+    }
+    return jumlah;
+}
+
+void delAll(queue &Q) {
+    address P;
+    while (!isEmpty(Q)) {
+        deleteQueue(Q, P);
+        dealokasi(P);
+    }
+}
+
+```
+
+```C++
+#include <iostream>
+#include "queue-array.h"
+using namespace std;
+
+int main() {
+    queue Q;
+    address P; 
+
+    CreateQueue(Q);
+    cout << "isEmpty : " << isEmpty(Q) << endl;
+    printInfo(Q);
+
+    insert(Q, alokasi(5));
+    insert(Q, alokasi(2));
+    insert(Q, alokasi(7));
+    cout << "Setelah insert 5, 2, 7" << endl;
+    printInfo(Q);
+    cout << "nbList  : " << nbList(Q) << endl;
+
+    P = findElm(Q, 2);
+    if (P != Nil) {
+        cout << "findElm(2) ketemu, info = " << P->info << endl;
+        cout << "fFindElm : " << fFindElm(Q, P) << endl;
+    }
+    if (findElm(Q, 9) == Nil) {
+        cout << "findElm(9) tidak ketemu" << endl;
+    }
+
+    deleteQueue(Q, P);
+    cout << "Setelah delete, elemen yang keluar = " << P->info << endl;
+    dealokasi(P);
+    printInfo(Q);
+
+    delAll(Q);
+    cout << "Setelah delAll" << endl;
+    printInfo(Q);
+    cout << "isEmpty : " << isEmpty(Q) << endl;
+
+    return 0;
+}
+```
+Pada guided ini, saya belajar untuk membuat program queue menggunakan representasi pointer (linked list) yang menerapkan konsep ADT dengan memisahkan kode menjadi tiga file, yaitu queue.h, queue.cpp, dan main.cpp. File queue.h berisi definisi Nil sebagai NULL, alias boolean dan infotype, alias address sebagai pointer ke struct elmQ, struct elmQ dengan field info dan next, serta struct queue dengan field head dan tail sebagai penunjuk elemen pertama dan terakhir. File ini juga berisi prototipe semua fungsi dan prosedur serta dilindungi include guard (#ifndef, #define, #endif). Pada queue.cpp, isEmpty mengecek apakah head bernilai Nil, sedangkan CreateQueue mengatur head dan tail menjadi Nil untuk membentuk queue kosong. Fungsi alokasi membuat elemen baru dengan new, sedangkan dealokasi mengembalikan memorinya dengan delete. Fungsi findElm mencari elemen berdasarkan info dan mengembalikan alamatnya atau Nil, sedangkan fFindElm mengecek apakah suatu alamat ada di dalam queue. Prosedur insert (enqueue) menyisipkan elemen di tail dengan kasus khusus saat queue kosong, sedangkan deleteQueue (dequeue) mengambil elemen pada head lalu memindahkan head ke elemen berikutnya. Prosedur printInfo menampilkan isi queue dari head, nbList menghitung jumlah elemen, dan delAll menghapus seluruh elemen sampai queue kosong. Pada main.cpp, program membuat queue kosong, lalu memasukkan elemen 5, 2, dan 7 dengan insert sehingga nbList bernilai 3. Setelah itu findElm menemukan elemen bernilai 2 dan tidak menemukan 9, deleteQueue mengambil elemen 5 sehingga tersisa 2 7, dan terakhir delAll menghapus seluruh elemen sehingga queue kembali kosong.   
+
+### 2. Guided 2
+
+```C++
+#ifndef QUEUE_H
+#define QUEUE_H
+
+#include <iostream>
+using namespace std;
+
+const int MAKSIMAL = 5;
+
+struct queue {
+    string nama[MAKSIMAL];
+    int head;
+    int tail;
+};
+
+bool isFull(queue Q);
+bool isEmpty(queue Q);
+void CreateQueue(queue &Q);
+void enQueue(queue &Q, string nama);
+void deQueue(queue &Q);
+void viewQueue(queue Q);
+
+#endif
+```
+
+```C++
+#include "queue.h"
+
+boolean isEmpty(queue Q) {
+    return (Q.head == Nil);
+}
+
+void CreateQueue(queue &Q) {
+    Q.head = Nil;
+    Q.tail = Nil;
+}
+
+address alokasi(infotype X) {
+    address P = new (nothrow) elmQ;
+    if (P != Nil) {
+        P->info = X;
+        P->next = Nil;
+    }
+    return P;
+}
+
+void dealokasi(address P) {
+    delete P;
+}
+
+address findElm(queue Q, infotype X) {
+    address P = Q.head;
+    while (P != Nil) {
+        if (P->info == X) {
+            return P;
+        }
+        P = P->next;
+    }
+    return Nil;
+}
+
+boolean fFindElm(queue Q, address P) {
+    address R = Q.head;
+    while (R != Nil) {
+        if (R == P) {
+            return true;
+        }
+        R = R->next;
+    }
+    return false;
+}
+
+void insert(queue &Q, address P) { //enqueue
+    if (isEmpty(Q)) {
+        Q.head = P;
+        Q.tail = P;
+    } else {
+        (Q.tail)->next = P;
+        Q.tail = P;
+    }
+}
+
+void deleteQueue(queue &Q, address &P) { //dequeue
+    P = Q.head;
+    if (Q.head == Q.tail) {
+        Q.head = Nil;
+        Q.tail = Nil;
+    } else {
+        Q.head = P->next;
+    }
+    P->next = Nil;
+}
+
+void printInfo(queue Q) {
+    if (isEmpty(Q)) {
+        cout << "Queue kosong" << endl;
+    } else {
+        address P = Q.head;
+        while (P != Nil) {
+            cout << P->info << " ";
+            P = P->next;
+        }
+        cout << endl;
+    }
+}
+
+int nbList(queue Q) {
+    int jumlah = 0;
+    address P = Q.head;
+    while (P != Nil) {
+        jumlah++;
+        P = P->next;
+    }
+    return jumlah;
+}
+
+void delAll(queue &Q) {
+    address P;
+    while (!isEmpty(Q)) {
+        deleteQueue(Q, P);
+        dealokasi(P);
     }
 }
 ```
 
 ```C++
+#include "queue-array.h"
 #include <iostream>
-#include <cstring>
-#include "stack.h"
+
 using namespace std;
 
-int main() {
-    Stack S;
-    infotype data, hasil;
+int main(){
+    queue Q;
 
-    createStack(S);
-    cout << "Stack baru dibuat, Top = " << S.Top << endl;
-    viewStack(S);
+    CreateQueue(Q);
+    enQueue(Q, "Dimas");
+    enQueue(Q, "Arvin");
+    enQueue(Q, "Rizal");
+    enQueue(Q, "Hafizh");
+    enQueue(Q, "Fathur");
+    enQueue(Q, "Daffa");
+    cout << endl;
 
-    cout << endl << "--- Push 3 data ---" << endl;
-    strcpy(data.nim, "109082500019");
-    strcpy(data.nama, "Pandu");
-    push(S, data);
-    
-    strcpy(data.nim, "109082500039");
-    strcpy(data.nama, "Indra");
-    push(S, data);
-    
-    strcpy(data.nim, "109082510019");
-    strcpy(data.nama, "Nehemmia");
-    push(S, data);
-    viewStack(S);
+    cout << "--- Isi Queue Setelah enQueue ---" << endl;
+    viewQueue(Q);
+    cout << endl;
 
-    cout << endl << "--- Pop 1 data ---" << endl;
-    pop(S, hasil);
-    cout << "Data yang diambil: " << hasil.nim << " - " << hasil.nama << endl;
-    viewStack(S);
+    deQueue(Q);
+    deQueue(Q);
+    deQueue(Q);
+    deQueue(Q);
+    // deQueue(Q);
+    // deQueue(Q);
+    cout << endl;
 
-    cout << endl << "--- Pop sampai kosong ---" << endl;
-    pop(S, hasil);
-    pop(S, hasil);
-    pop(S, hasil);
-    viewStack(S);
+    cout << "--- Isi Queue Setelah deQueue ---" << endl;
+    viewQueue(Q);
 
     return 0;
 }
 ```
-Pada guided ini, saya belajar untuk membuat program stack menggunakan representasi tabel (array) yang menerapkan konsep ADT dengan memisahkan kode menjadi tiga file, yaitu stack.h, stack.cpp, dan main.cpp. File stack.h berisi deklarasi struct infotype dengan field nim dan nama bertipe array of char berukuran 20, serta struct Stack dengan field info berupa array infotype berukuran 10 dan field Top sebagai penunjuk indeks elemen teratas. File ini juga berisi prototipe fungsi dan prosedur yang dipakai, serta dilindungi include guard (#ifndef, #define, #endif) agar tidak terbaca dua kali. File stack.cpp berisi isi dari primitif-primitif tersebut. Fungsi isEmpty mengecek apakah Top bernilai 0, dengan nilai kembalian 0 jika stack kosong dan 1 jika stack berisi, sedangkan prosedur createStack mengatur Top menjadi 0 untuk membentuk stack kosong. Prosedur push menambah nilai Top lalu menyimpan data X pada indeks Top - 1, dengan pengecekan agar tidak melebihi kapasitas 10 elemen. Prosedur pop menyimpan data pada indeks Top - 1 ke parameter X (call by reference), lalu mengurangi nilai Top, dengan pengecekan agar tidak dijalankan saat stack kosong. Prosedur viewStack menampilkan pesan stack kosong jika stack tidak berisi, dan jika berisi akan menelusuri elemen dari Top sampai elemen terbawah sambil menampilkan NIM dan nama setiap data. Semua prosedur yang mengubah isi stack menerima parameter Stack &S (call by reference) agar perubahan langsung tersimpan di stack aslinya. Pada main.cpp, program membuat variabel S bertipe Stack serta variabel data dan hasil bertipe infotype, memanggil createStack, lalu menampilkan stack yang masih kosong dengan Top bernilai 0. Setelah itu data diisi menggunakan strcpy dan dimasukkan dengan push sebanyak tiga kali untuk Pandu, Indra, dan Nehemmia, sehingga viewStack menampilkan Nehemmia sebagai Top, diikuti Indra dan Pandu. Berikutnya pop dilakukan satu kali sehingga data Nehemmia diambil dan ditampilkan melalui variabel hasil, lalu tersisa Indra dan Pandu. Terakhir, pop dilakukan tiga kali berturut-turut sehingga seluruh isi stack terambil dan viewStack menampilkan stack kosong. Pada pop yang ketiga, stack sudah kosong sehingga yang tampil adalah pesan bahwa tidak ada data yang bisa diambil.
+Pada guided ini, saya belajar untuk membuat program queue menggunakan representasi tabel (array) yang menerapkan konsep ADT dengan memisahkan kode menjadi tiga file, yaitu queue.h, queue.cpp, dan main.cpp. File queue.h berisi konstanta MAKSIMAL bernilai 5 sebagai kapasitas queue, serta struct queue dengan field nama berupa array string berukuran MAKSIMAL, field head sebagai penunjuk elemen paling depan, dan field tail sebagai penunjuk elemen paling belakang. File ini juga berisi prototipe fungsi dan prosedur yang dipakai, serta dilindungi include guard (#ifndef, #define, #endif) agar tidak terbaca dua kali. File queue.cpp berisi isi dari primitif-primitif tersebut. Fungsi isFull mengecek apakah queue sudah penuh, fungsi isEmpty mengecek apakah queue kosong, dan prosedur CreateQueue membentuk queue kosong. Prosedur enQueue menyisipkan nama baru di bagian tail, sedangkan prosedur deQueue mengambil elemen pada bagian head. Prosedur viewQueue menampilkan seluruh isi queue dari head sampai tail. Semua prosedur yang mengubah isi queue menerima parameter queue &Q (call by reference) agar perubahan langsung tersimpan di queue aslinya. Pada main.cpp, program membuat variabel Q bertipe queue, memanggil CreateQueue, lalu melakukan enQueue sebanyak enam kali untuk Dimas, Arvin, Rizal, Hafizh, Fathur, dan Daffa. Karena kapasitas queue hanya 5, nama yang keenam (Daffa) tidak dapat masuk dan program menampilkan pesan bahwa queue penuh, sehingga viewQueue menampilkan Dimas, Arvin, Rizal, Hafizh, dan Fathur. Setelah itu deQueue dilakukan empat kali sehingga elemen terdepan keluar satu per satu dan tersisa Fathur saja.
 
 ## Unguided 
 
@@ -282,8 +510,7 @@ int main() {
 ##### Output 1
 ![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%201/image.png?raw=true)
 
-
-Program di atas merupakan program yang saya buat untuk membuat stack menggunakan array dengan menerapkan konsep ADT yang dibagi menjadi tiga file, yaitu stack.h untuk deklarasi, stack.cpp untuk isi prosedur, dan main.cpp sebagai program utama. File stack.h berisi alias infotype bertipe int serta struct Stack dengan field info berupa array berukuran 20 dan field top sebagai penunjuk jumlah elemen yang ada di dalam stack. File ini juga berisi prototipe prosedur dan dilindungi include guard (#ifndef, #define, #endif). Pada stack.cpp, prosedur createStack menerima parameter Stack &S (call by reference) lalu mengatur top menjadi 0 untuk membentuk stack kosong. Prosedur push menyimpan elemen baru pada indeks top lalu menambah nilai top, dengan pengecekan agar tidak melebihi kapasitas 20 elemen. Fungsi pop mengurangi nilai top lalu mengembalikan info pada indeks tersebut sebagai elemen yang diambil, dengan pengecekan agar tidak dijalankan saat stack kosong. Prosedur printInfo menelusuri stack dari elemen paling atas sampai elemen terbawah sambil menampilkan info setiap elemen. Prosedur balikStack membalik urutan elemen dengan menukar elemen paling bawah dan paling atas secara bergantian sampai bertemu di tengah. Pada main.cpp, program membuat variabel S bertipe Stack, memanggil createStack, lalu melakukan push 3, 4, dan 8, pop satu kali, push 2 dan 3, pop satu kali, dan push 9 sehingga isi stack dari bawah ke atas menjadi 3, 4, 2, 9. Karena printInfo menampilkan dari Top, hasilnya adalah 9, 2, 4, 3, kemudian setelah balikStack urutannya menjadi 3, 4, 2, 9.
+Pada soal ini, program membuat queue menggunakan array berukuran 5 dengan mekanisme Alternatif 1, yaitu head diam di indeks 0 dan hanya tail yang bergerak. File queue.h berisi alias infotype bertipe int, struct Queue dengan field info berupa array berukuran 5 serta field head dan tail, dan prototipe fungsi serta prosedur yang dilindungi include guard (#ifndef, #define, #endif). Pada queue.cpp, prosedur createQueue mengatur head dan tail menjadi -1 untuk membentuk queue kosong, fungsi isEmptyQueue mengecek apakah head bernilai -1, dan fungsi isFullQueue mengecek apakah tail sudah mencapai indeks 4. Prosedur enqueue menyisipkan elemen di belakang dengan menaikkan tail, dengan kasus khusus saat queue kosong, yaitu head dan tail diatur menjadi 0. Fungsi dequeue mengambil elemen pada head, lalu menggeser semua elemen di belakangnya satu langkah ke depan dan menurunkan tail, sedangkan jika hanya tersisa satu elemen maka head dan tail dikembalikan ke -1. Prosedur printInfo menampilkan nilai head dan tail, lalu isi queue dari head sampai tail atau tulisan "empty queue" jika kosong. Pada main.cpp, enqueue 5, 2, dan 7 menghasilkan queue 5 2 7, dequeue mengambil 5 sehingga tersisa 2 7, enqueue 4 menghasilkan 2 7 4, lalu dua dequeue berikutnya menyisakan 7 4 dan terakhir 4, dengan head tetap berada di indeks 0 selama proses berlangsung.
 
 ### 2.  Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme queue Alternatif 2 (head bergerak, tail bergerak).
 ```C++
@@ -402,7 +629,7 @@ int main() {
 ##### Output 1
 ![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%202/image.png?raw=true)
 
-Pada soal ini, program dikembangkan dengan menambahkan prosedur pushAscending untuk menyisipkan elemen ke dalam stack dengan tetap menjaga urutan elemen. Prosedur pushAscending dideklarasikan pada stack.h dengan parameter Stack &S dan infotype x. Pada stack.cpp, prosedur ini pertama-tama mengecek apakah stack sudah penuh, lalu mencari posisi sisip yang tepat, yaitu tepat setelah semua elemen yang nilainya lebih kecil atau sama dengan x. Setelah posisi ditemukan, elemen-elemen dari posisi tersebut sampai Top digeser satu langkah ke atas agar tersedia ruang kosong, kemudian x disimpan pada posisi itu dan nilai top ditambah satu. Dengan cara ini isi stack dari bawah ke atas selalu terurut naik sehingga elemen terbesar berada di Top. Pada main.cpp, pushAscending dipanggil dengan nilai 3, 4, 8, 2, 3, dan 9, sehingga isi stack menjadi 2, 3, 3, 4, 8, 9 dari bawah ke atas. Karena printInfo menampilkan dari Top, hasilnya adalah 9, 8, 4, 3, 3, 2, kemudian setelah balikStack urutannya menjadi 2, 3, 3, 4, 8, 9.
+Pada soal ini, queue.h dan main.cpp tidak berubah, hanya queue.cpp yang dikembangkan dengan mekanisme Alternatif 2, yaitu head dan tail sama-sama bergerak. Perbedaannya ada pada fungsi dequeue, yaitu elemen pada head diambil lalu head cukup dimajukan satu langkah tanpa menggeser elemen lain sehingga lebih efisien, sedangkan jika hanya tersisa satu elemen maka head dan tail dikembalikan ke -1. Konsekuensinya, dapat terjadi keadaan penuh semu, yaitu tail sudah mencapai indeks 4 padahal masih ada ruang kosong di depan head. Karena itu pada enqueue ditambahkan pengecekan, yaitu jika tail sudah berada di indeks 4, semua elemen digeser ke indeks awal, head diatur menjadi 0, dan tail disesuaikan sebelum elemen baru disisipkan. Fungsi isFullQueue diubah sehingga queue dinyatakan penuh hanya jika head bernilai 0 dan tail bernilai 4. Pada main.cpp, head ikut berpindah setiap kali dequeue dijalankan sehingga nilai H - T berubah dari 0 - 2 menjadi 1 - 2, kemudian 1 - 3, 2 - 3, dan terakhir 3 - 3.
 
 ### 3. Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme queue Alternatif 3 (head dan tail berputar).
 
@@ -519,10 +746,10 @@ int main() {
 ##### Output 1
 ![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%203/image.png?raw=true)
 
-Pada soal ini, program ditambahkan prosedur getInputStream untuk membaca input dari pengguna dan memasukkannya ke dalam stack. Prosedur getInputStream dideklarasikan pada stack.h dengan parameter Stack &S. Pada stack.cpp, prosedur ini membaca satu karakter pada satu waktu menggunakan cin.get() dan terus mengulang selama karakter yang terbaca bukan enter (‘\n’). Setiap karakter yang berupa angka diubah menjadi nilai integer dengan mengurangkan karakter ‘0’, kemudian dimasukkan ke dalam stack menggunakan push. Pada main.cpp, getInputStream dipanggil setelah createStack, lalu isi stack ditampilkan dengan printInfo. Jika pengguna mengetik 4729601, maka angka terakhir yang dimasukkan, yaitu 1, menjadi Top sehingga printInfo menampilkan 1, 0, 6, 9, 2, 7, 4. Setelah balikStack dipanggil, urutannya kembali seperti yang diketik, yaitu 4, 7, 2, 9, 6, 0, 1.
+Pada soal ini, queue.cpp dikembangkan dengan mekanisme Alternatif 3, yaitu head dan tail berputar mengelilingi indeks array (circular buffer) sehingga tidak diperlukan pergeseran elemen sama sekali. Pada enqueue, tail dimajukan dengan rumus (tail + 1) % 5 sehingga jika tail sudah di indeks 4, tail yang baru kembali ke indeks 0. Hal yang sama berlaku pada dequeue, yaitu head dimajukan dengan rumus (head + 1) % 5. Fungsi isFullQueue menyatakan queue penuh jika queue tidak kosong dan successor dari tail sama dengan head. Prosedur printInfo menelusuri elemen dari head menuju tail dengan ikut berputar, sehingga tetap benar walaupun head berada di indeks yang lebih besar daripada tail. Pada main.cpp, perputaran belum terjadi karena operasinya belum melewati indeks 4, sehingga outputnya sama dengan Alternatif 2. Perbedaannya baru terlihat jika enqueue dilakukan terus sampai melewati indeks terakhir, yaitu tail akan kembali ke indeks 0 dan memakai ruang kosong di depan head.
 
 ## Kesimpulan
-Pada praktikum modul 7 saya belajar terkait konsep stack, yaitu salah satu bentuk struktur data yang prinsip operasinya seperti tumpukan dengan aturan LIFO (Last In First Out), di mana elemen yang terakhir dimasukkan menjadi elemen pertama yang diambil, serta penerapannya dengan memisahkan program menjadi tiga bagian, yaitu file header (.h) untuk deklarasi type dan prosedur, file body (.cpp) untuk isi prosedur, dan file driver (main.cpp) sebagai program utama. Saya juga belajar bahwa stack dapat direpresentasikan dengan pointer maupun tabel, di mana pada representasi pointer setiap elemen terdiri dari info dan next serta memerlukan manajemen memori, sedangkan pada representasi tabel stack dibentuk menggunakan array berindeks dengan jumlah elemen terbatas dan tidak memerlukan manajemen memori. Selain itu, saya mempelajari operasi-operasi dasar pada stack, seperti membentuk stack kosong dengan createStack, menyisipkan elemen dengan push, mengambil elemen paling atas dengan pop, serta menampilkan isi stack dengan printInfo yang menelusuri elemen dari Top sampai elemen terbawah. Semua materi tersebut saya terapkan dalam tiga latihan soal yang sudah diberikan, yaitu membuat ADT stack menggunakan array yang dilengkapi prosedur balikStack untuk membalik urutan elemen sehingga menghasilkan stack 9, 2, 4, 3 yang berubah menjadi 3, 4, 2, 9, kemudian menambahkan prosedur pushAscending untuk menyisipkan elemen dengan tetap menjaga urutan sehingga elemen terbesar berada di Top dan menghasilkan stack 9, 8, 4, 3, 3, 2, serta menambahkan prosedur getInputStream untuk membaca input pengguna menggunakan cin.get() dan memasukkan setiap angka ke dalam stack hingga pengguna menekan enter.
+
 
 ## Referensi
 [1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
