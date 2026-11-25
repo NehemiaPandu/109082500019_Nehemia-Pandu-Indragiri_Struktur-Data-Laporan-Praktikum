@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul 7 - Stack</h1>
+# <h1 align="center">Laporan Praktikum Modul 8 - Queue</h1>
 <p align="center">Nehemia Pandu Indragiri - 109082500019</p>
 
 ## Dasar Teori
@@ -508,7 +508,7 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%201/image.png?raw=true)
+![Screenshot Output Unguided 1_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%208/Unguided/Screenshot%20Output/Output%20Soal%201/image.png?raw=true)
 
 Pada soal ini, program membuat queue menggunakan array berukuran 5 dengan mekanisme Alternatif 1, yaitu head diam di indeks 0 dan hanya tail yang bergerak. File queue.h berisi alias infotype bertipe int, struct Queue dengan field info berupa array berukuran 5 serta field head dan tail, dan prototipe fungsi serta prosedur yang dilindungi include guard (#ifndef, #define, #endif). Pada queue.cpp, prosedur createQueue mengatur head dan tail menjadi -1 untuk membentuk queue kosong, fungsi isEmptyQueue mengecek apakah head bernilai -1, dan fungsi isFullQueue mengecek apakah tail sudah mencapai indeks 4. Prosedur enqueue menyisipkan elemen di belakang dengan menaikkan tail, dengan kasus khusus saat queue kosong, yaitu head dan tail diatur menjadi 0. Fungsi dequeue mengambil elemen pada head, lalu menggeser semua elemen di belakangnya satu langkah ke depan dan menurunkan tail, sedangkan jika hanya tersisa satu elemen maka head dan tail dikembalikan ke -1. Prosedur printInfo menampilkan nilai head dan tail, lalu isi queue dari head sampai tail atau tulisan "empty queue" jika kosong. Pada main.cpp, enqueue 5, 2, dan 7 menghasilkan queue 5 2 7, dequeue mengambil 5 sehingga tersisa 2 7, enqueue 4 menghasilkan 2 7 4, lalu dua dequeue berikutnya menyisakan 7 4 dan terakhir 4, dengan head tetap berada di indeks 0 selama proses berlangsung.
 
@@ -627,7 +627,7 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%202/image.png?raw=true)
+![Screenshot Output Unguided 2_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%208/Unguided/Screenshot%20Output/Output%20Soal%202/image.png?raw=true)
 
 Pada soal ini, queue.h dan main.cpp tidak berubah, hanya queue.cpp yang dikembangkan dengan mekanisme Alternatif 2, yaitu head dan tail sama-sama bergerak. Perbedaannya ada pada fungsi dequeue, yaitu elemen pada head diambil lalu head cukup dimajukan satu langkah tanpa menggeser elemen lain sehingga lebih efisien, sedangkan jika hanya tersisa satu elemen maka head dan tail dikembalikan ke -1. Konsekuensinya, dapat terjadi keadaan penuh semu, yaitu tail sudah mencapai indeks 4 padahal masih ada ruang kosong di depan head. Karena itu pada enqueue ditambahkan pengecekan, yaitu jika tail sudah berada di indeks 4, semua elemen digeser ke indeks awal, head diatur menjadi 0, dan tail disesuaikan sebelum elemen baru disisipkan. Fungsi isFullQueue diubah sehingga queue dinyatakan penuh hanya jika head bernilai 0 dan tail bernilai 4. Pada main.cpp, head ikut berpindah setiap kali dequeue dijalankan sehingga nilai H - T berubah dari 0 - 2 menjadi 1 - 2, kemudian 1 - 3, 2 - 3, dan terakhir 3 - 3.
 
@@ -744,12 +744,12 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%207/Unguided/Screenshot%20Output/Output%20Soal%203/image.png?raw=true)
+![Screenshot Output Unguided 3_1](https://github.com/NehemiaPandu/109082500019_Nehemia-Pandu-Indragiri_Struktur-Data-Laporan-Praktikum/blob/main/Modul%208/Unguided/Screenshot%20Output/Output%20Soal%203/image.png?raw=true)
 
 Pada soal ini, queue.cpp dikembangkan dengan mekanisme Alternatif 3, yaitu head dan tail berputar mengelilingi indeks array (circular buffer) sehingga tidak diperlukan pergeseran elemen sama sekali. Pada enqueue, tail dimajukan dengan rumus (tail + 1) % 5 sehingga jika tail sudah di indeks 4, tail yang baru kembali ke indeks 0. Hal yang sama berlaku pada dequeue, yaitu head dimajukan dengan rumus (head + 1) % 5. Fungsi isFullQueue menyatakan queue penuh jika queue tidak kosong dan successor dari tail sama dengan head. Prosedur printInfo menelusuri elemen dari head menuju tail dengan ikut berputar, sehingga tetap benar walaupun head berada di indeks yang lebih besar daripada tail. Pada main.cpp, perputaran belum terjadi karena operasinya belum melewati indeks 4, sehingga outputnya sama dengan Alternatif 2. Perbedaannya baru terlihat jika enqueue dilakukan terus sampai melewati indeks terakhir, yaitu tail akan kembali ke indeks 0 dan memakai ruang kosong di depan head.
 
 ## Kesimpulan
-
+Pada praktikum modul 8 saya belajar terkait konsep queue, yaitu salah satu bentuk struktur data yang prinsip operasinya seperti antrean dengan aturan FIFO (First In First Out), di mana elemen yang pertama masuk akan diakses terlebih dahulu, serta penerapannya dengan memisahkan program menjadi tiga bagian, yaitu file header (.h) untuk deklarasi type dan prosedur, file body (.cpp) untuk isi prosedur, dan file driver (main.cpp) sebagai program utama. Saya juga belajar bahwa queue dapat direpresentasikan dengan pointer maupun tabel, di mana pada representasi pointer setiap elemen terdiri dari info dan next serta memerlukan manajemen memori berupa alokasi dan dealokasi, sedangkan pada representasi tabel queue dibentuk menggunakan array berindeks dengan jumlah elemen terbatas dan tidak memerlukan manajemen memori. Selain itu, saya mempelajari operasi-operasi dasar pada queue, seperti membentuk queue kosong dengan createQueue, mengecek kondisi queue dengan isEmptyQueue dan isFullQueue, menyisipkan elemen di bagian belakang (tail) dengan enqueue, mengambil elemen di bagian depan (head) dengan dequeue, serta menampilkan isi queue dengan printInfo yang menelusuri elemen dari head sampai tail. Semua materi tersebut saya terapkan dalam tiga latihan soal yang sudah diberikan, yaitu membuat ADT queue menggunakan array berukuran 5 dengan mekanisme Alternatif 1 (head diam dan tail bergerak) yang mengharuskan pergeseran seluruh elemen ke depan setiap kali dequeue dilakukan sehingga rangkaian operasi menyisakan elemen 4 dengan posisi H - T pada 0 - 0, kemudian mengembangkan implementasi queue dengan mekanisme Alternatif 2 (head bergerak dan tail bergerak) yang cukup memajukan head saat dequeue namun menggeser elemen ke indeks awal ketika terjadi keadaan penuh semu sehingga posisi H - T berpindah hingga 3 - 3, serta menerapkan mekanisme Alternatif 3 (circular buffer) di mana head dan tail berputar mengelilingi indeks array menggunakan operasi modulo (% 5) sehingga seluruh operasi berjalan efisien tanpa memerlukan pergeseran elemen sama sekali.
 
 ## Referensi
 [1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
